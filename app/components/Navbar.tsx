@@ -4,6 +4,8 @@ import React, { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import Link from 'next/link'
 import { FaBars, FaTimes } from 'react-icons/fa'
+import ScrollProgressBar from './ScrollProgressBar'
+import { usePathname } from 'next/navigation'
 
 const ServiceDropdown = ({ isOpen }: { isOpen: boolean }) => {
   const services = [
@@ -23,7 +25,7 @@ const ServiceDropdown = ({ isOpen }: { isOpen: boolean }) => {
           animate={{ opacity: 1, y: 0 }}
           exit={{ opacity: 0, y: -10 }}
           transition={{ duration: 0.2 }}
-          className="absolute top-full left-1/2 transform -translate-x-1/2 mt-2 w-64 rounded-xl bg-white/95 backdrop-blur-lg border border-gray-200 shadow-2xl"
+          className="absolute top-full left-1/2 transform -translate-x-1/2 mt-2 w-64 rounded-xl bg-white border border-gray-200 shadow-lg"
         >
           <div className="py-2">
             {services.map((service, index) => (
@@ -35,12 +37,9 @@ const ServiceDropdown = ({ isOpen }: { isOpen: boolean }) => {
               >
                 <Link
                   href={service.href}
-                  className="block px-4 py-3 text-gray-700 hover:text-gray-900 hover:bg-gradient-to-r from-primary-100/50 to-secondary-100/50 transition-all duration-300"
+                  className="block px-4 py-3 text-gray-700 hover:text-gray-900 hover:bg-gray-50 transition-colors duration-200"
                 >
-                  <span className="relative group">
-                    {service.name}
-                    <span className="absolute bottom-0 left-0 w-full h-0.5 bg-gradient-to-r from-primary-500 to-secondary-500 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300" />
-                  </span>
+                  {service.name}
                 </Link>
               </motion.div>
             ))}
@@ -55,6 +54,8 @@ const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false)
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
   const [isServicesOpen, setIsServicesOpen] = useState(false)
+  const pathname = usePathname()
+  const isHome = pathname === '/'
 
   const navItems = [
     { name: 'Home', href: '/' },
@@ -75,15 +76,18 @@ const Navbar = () => {
 
   return (
     <>
+      <ScrollProgressBar />
       <motion.nav
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-          isScrolled ? 'bg-white/95 backdrop-blur-lg shadow-lg border-b border-gray-200' : 'bg-white/90 backdrop-blur-lg'
+          isHome && !isScrolled
+            ? 'bg-transparent border-transparent'
+            : 'bg-white shadow-sm border-b border-gray-200'
         }`}
         initial={{ y: -100 }}
         animate={{ y: 0 }}
         transition={{ duration: 0.5 }}
       >
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="container">
           <div className="flex items-center justify-between h-20">
             {/* Logo */}
             <motion.div
@@ -92,7 +96,7 @@ const Navbar = () => {
               transition={{ duration: 0.5 }}
               className="flex-shrink-0"
             >
-              <Link href="/" className="text-2xl font-bold gradient-text">
+              <Link href="/" className={`text-2xl font-semibold ${isHome && !isScrolled ? 'text-white drop-shadow-[0_2px_8px_rgba(0,0,0,0.85)]' : 'text-gray-900'}`}>
                 Leadzoro
               </Link>
             </motion.div>
@@ -112,14 +116,10 @@ const Navbar = () => {
                   >
                     <Link
                       href={item.href}
-                      className="text-gray-700 hover:text-gray-900 px-3 py-2 text-sm font-medium relative group"
+                      className={`${isHome && !isScrolled ? 'text-white/90 hover:text-white drop-shadow-[0_1px_6px_rgba(0,0,0,0.75)]' : 'text-gray-700 hover:text-gray-900'} px-3 py-2 text-sm font-medium`}
                       onClick={(e) => item.hasDropdown && e.preventDefault()}
                     >
                       {item.name}
-                      <motion.span
-                        className="absolute bottom-0 left-0 w-full h-0.5 bg-gradient-to-r from-primary-500 to-secondary-500 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300"
-                        layoutId="underline"
-                      />
                     </Link>
                     {item.hasDropdown && <ServiceDropdown isOpen={isServicesOpen} />}
                   </motion.div>
@@ -136,7 +136,7 @@ const Navbar = () => {
             >
               <button
                 onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-                className="text-gray-700 hover:text-gray-900 p-2"
+                className={`${isHome && !isScrolled ? 'text-white hover:text-white/90' : 'text-gray-700 hover:text-gray-900'} p-2`}
               >
                 {isMobileMenuOpen ? <FaTimes size={24} /> : <FaBars size={24} />}
               </button>
@@ -148,7 +148,7 @@ const Navbar = () => {
         <AnimatePresence>
           {isMobileMenuOpen && (
             <motion.div
-              className="md:hidden bg-white/95 backdrop-blur-lg border-t border-gray-200"
+              className="md:hidden bg-white border-t border-gray-200"
               initial={{ opacity: 0, height: 0 }}
               animate={{ opacity: 1, height: 'auto' }}
               exit={{ opacity: 0, height: 0 }}
@@ -200,7 +200,7 @@ const Navbar = () => {
       </motion.nav>
 
       {/* Navbar Spacer */}
-      <div className="h-20" />
+      <div className={isHome ? 'h-0' : 'h-20'} />
     </>
   )
 }

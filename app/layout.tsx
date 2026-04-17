@@ -1,7 +1,6 @@
 import type { Metadata, Viewport } from 'next'
 import { Inter } from 'next/font/google'
 import './globals.css'
-import PageTransition from '@/components/PageTransition'
 import Script from 'next/script'
 import { Analytics } from "@vercel/analytics/react"
 import { SpeedInsights } from "@vercel/speed-insights/next"
@@ -76,10 +75,10 @@ export default function RootLayout({
             style={{ display: 'none', visibility: 'hidden' }}
           />
         </noscript>
-        <PageTransition>{children}</PageTransition>
+        {children}
         <Analytics />
+        <SpeedInsights />
       </body>
-      <SpeedInsights />
     </html>
   );
 }

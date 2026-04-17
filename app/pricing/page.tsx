@@ -63,7 +63,7 @@ const PricingPage = () => {
             variants={fadeIn}
           >
             <h1 className="text-4xl md:text-6xl font-bold mb-6">
-              <span className="gradient-text">💰 Pricing Plans</span>
+              <span className="text-gray-900">💰 Pricing Plans</span>
             </h1>
             <h2 className="text-2xl md:text-3xl font-semibold mb-6">
               Digital Marketing That Delivers & Scales
@@ -301,7 +301,7 @@ const SEOPricingTable = () => {
           visible: { opacity: 1, y: 0, transition: { duration: 0.6 } }
         }}
       >
-        <span className="gradient-text">🔍 SEO Services Pricing</span>
+        <span className="text-gray-900">🔍 SEO Services Pricing</span>
       </motion.h2>
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -383,7 +383,7 @@ const GMBPricingTable = () => {
           visible: { opacity: 1, y: 0, transition: { duration: 0.6 } }
         }}
       >
-        <span className="gradient-text">📍 Google My Business (GMB) Pricing</span>
+        <span className="text-gray-900">📍 Google My Business (GMB) Pricing</span>
       </motion.h2>
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -462,7 +462,7 @@ const FacebookPricingTable = () => {
           visible: { opacity: 1, y: 0, transition: { duration: 0.6 } }
         }}
       >
-        <span className="gradient-text">📘 Facebook Ads Pricing</span>
+        <span className="text-gray-900">📘 Facebook Ads Pricing</span>
       </motion.h2>
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -541,7 +541,7 @@ const GooglePricingTable = () => {
           visible: { opacity: 1, y: 0, transition: { duration: 0.6 } }
         }}
       >
-        <span className="gradient-text">🔎 Google Ads Pricing</span>
+        <span className="text-gray-900">🔎 Google Ads Pricing</span>
       </motion.h2>
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -620,7 +620,7 @@ const BrandingPricingTable = () => {
           visible: { opacity: 1, y: 0, transition: { duration: 0.6 } }
         }}
       >
-        <span className="gradient-text">🎨 Branding & Design Pricing</span>
+        <span className="text-gray-900">🎨 Branding & Design Pricing</span>
       </motion.h2>
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -696,7 +696,7 @@ const ConsultingPricingTable = () => {
           visible: { opacity: 1, y: 0, transition: { duration: 0.6 } }
         }}
       >
-        <span className="gradient-text">🧠 Business Consulting Pricing</span>
+        <span className="text-gray-900">🧠 Business Consulting Pricing</span>
       </motion.h2>
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -786,7 +786,7 @@ const WhatsIncludedSection = () => {
       className="text-center"
     >
       <h2 className="text-3xl font-bold mb-12 text-slate-900">
-        <span className="gradient-text">✅ What's Included in All Plans</span>
+        <span className="text-gray-900">✅ What's Included in All Plans</span>
       </h2>
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -824,7 +824,7 @@ const CTASection = () => {
       className="bg-white/70 border border-gray-200 rounded-2xl p-10"
     >
       <h2 className="text-3xl font-bold mb-6 text-slate-900">
-        <span className="gradient-text">📞 Not Sure What to Pick?</span>
+        <span className="text-gray-900">📞 Not Sure What to Pick?</span>
       </h2>
 
       <p className="text-xl text-slate-700 mb-8">

@@ -1,912 +1,636 @@
 'use client'
 
-import React, { useState } from 'react'
-import { motion } from 'framer-motion'
-import { useInView } from 'react-intersection-observer'
-import { FaCheckCircle, FaFacebookF, FaInstagram, FaWhatsapp, FaCog, FaChartLine, FaUsers, FaBullseye } from 'react-icons/fa'
-import Image from 'next/image'
+import * as React from 'react'
 import Navbar from '../components/Navbar'
-import Services1 from '../../public/assets/Services1.png'
-import Services2 from '../../public/assets/Services2.png'
-import Services3 from '../../public/assets/Services3.png'
-import Services4 from '../../public/assets/Services4.png'
-import Services5 from '../../public/assets/Services5.png'
-import Services6 from '../../public/assets/Services6.png'
-import Services7 from '../../public/assets/Services7.png'
-import Services9 from '../../public/assets/Servcies9.png'
 import Footer from '../components/Footer'
+import Section from '../components/ui/Section'
+import Card from '../components/ui/Card'
+import Button from '../components/ui/Button'
+import ScrollReveal from '../components/ui/ScrollReveal'
 
-interface ServiceCardProps {
-  title: string;
-  content: string;
-  icon: React.ComponentType<{ className?: string }>;
-  delay?: number;
-}
+const heroTitle = 'Meta Ads Services in Pune That Actually Generate Leads — Not Just Clicks'
 
-const ServiceCard = ({ title, content, icon: Icon, delay = 0 }: ServiceCardProps) => {
-  const { ref, inView } = useInView({
-    triggerOnce: true,
-    threshold: 0.1,
-  })
+const heroIntro = `You’ve probably already tried running ads.
+Boosted a few posts.
+Spent ₹10,000… maybe ₹50,000.
+Got likes, comments… but no real business.
+Aur phir laga — “Ads kaam hi nahi karte.”`
 
+const truthBlock = `Truth?
+Ads kaam karte hain.
+Bas strategy galat hoti hai.
+Most businesses don’t fail because Meta Ads don’t work.
+They fail because:`
+
+const truthBullets = ['Wrong targeting', 'Weak creatives', 'No funnel strategy', 'No follow-up system']
+
+const truthResult = `Result? Budget burn. Zero ROI.
+If you're serious about leads, sales, and predictable growth — this is exactly where Leadzoro’s Meta Ads Services in Pune step in.`
+
+const whatExactlyTitle = 'What Exactly Are Meta Ads Services — And Why They Matter for Your Business'
+
+const whatExactlyPara1 = `Meta Ads = Facebook + Instagram Ads ecosystem
+But real performance marketing goes way deeper than just running ads.`
+
+const whatExactlyPara2 = `At Leadzoro, Meta Ads means:
+Data-backed targeting (not guesswork)
+High-converting creatives (not random designs)
+Funnel-based strategy (not single ad campaigns)
+Conversion tracking (actual ROI measurement)
+We don’t run ads.
+We build a system that turns attention into revenue.`
+
+const whatYouGetTitle = 'What You Actually Get:'
+const whatYouGetBullets = [
+  'Facebook Ads strategy tailored to your business',
+  'Instagram Ads campaigns designed for engagement + conversions',
+  'Lead generation funnels (landing page / WhatsApp / forms)',
+  'Retargeting campaigns (most agencies ignore this)',
+  'Full tracking setup (Pixel + Conversion API)',
+]
+
+const whatYouGetPara = `This is why businesses searching for a Facebook Ads Agency Pune or Instagram Ads Services India end up choosing performance-focused teams — not just “ad runners”.`
+
+const painTitle = 'Why Most Businesses Fail with Meta Ads (Real Pain Points)'
+const painIntro = `Let’s break this down honestly.`
+
+const painPoints = [
+  `“Leads aa rahe hain… but quality bekaar hai”
+Cheap leads ≠ good leads
+Wrong audience targeting = time waste + low conversions`,
+  `“Ad spend ho raha hai but ROI clear nahi hai”
+No proper tracking = no idea what’s working
+Most agencies don’t even set up events correctly`,
+  `“Creative bana diya… but performance nahi aa raha”
+Meta is a creative-first platform now
+Average creatives = ignored ads`,
+  `“Ek baar campaign chala, phir band ho gaya”
+No scaling strategy
+No optimization cycle
+No testing`,
+  `“Agency report bhejti hai… but business grow nahi hota”
+Vanity metrics:
+Reach
+Impressions
+Clicks
+But no focus on:
+Cost per lead
+Cost per sale
+ROI`,
+  `“WhatsApp leads aate hain… but convert nahi hote”
+No funnel.
+No nurturing.
+No follow-up automation.`,
+]
+
+const painClose = `Agar aapko inme se 2–3 problems bhi relate ho rahi hain,
+then your ads don’t need more budget —
+they need a better system.`
+
+const approachTitle = 'Leadzoro’s Approach — Not Just Ads, A Complete Growth Engine'
+const approachIntro = `Most agencies run ads.
+We build conversion ecosystems.`
+
+const approachBlocks = [
+  `Audience Intelligence First (Not Random Targeting)
+Before running a single ad, we deep dive into:
+Your ideal customer profile
+Buying intent signals
+Competitor ad analysis
+Market positioning
+Because agar targeting galat hai, toh best creative bhi fail ho jayega.`,
+  `Funnel-Based Strategy (This Changes Everything)
+We don’t run single ads. We design:
+Awareness Campaigns (cold audience)
+Consideration Campaigns (engagement + education)
+Conversion Campaigns (lead / sale)
+Retargeting Campaigns (high intent users)
+This is where most businesses lose money — they skip the funnel.`,
+  `Creative Strategy = Performance Driver
+Meta ads ka game 70% creative pe shift ho chuka hai.
+We test:
+Hook variations (first 3 seconds)
+UGC-style videos
+Problem-solution storytelling
+Offer-based creatives
+Social proof creatives
+Har 7–10 din me new creative testing hota hai.`,
+  `Data Tracking & Optimization (Real Performance Marketing)
+We implement:
+Meta Pixel
+Conversion API
+Event tracking (Lead, Purchase, ViewContent, etc.)
+Then optimize based on:
+CPL (Cost per Lead)
+CPA (Cost per Acquisition)
+ROAS (Return on Ad Spend)`,
+  `WhatsApp & Lead Funnel Optimization
+Leads lana easy hai. Convert karna skill hai.
+We help with:
+WhatsApp automation flow
+Instant response scripts
+Lead qualification systems`,
+  `Continuous Testing & Scaling
+No “set & forget”
+We run:
+A/B testing (audience, creatives, copies)
+Budget scaling strategies
+Performance analysis weekly`,
+]
+
+const processTitle = 'Our Step-by-Step Meta Ads Process (Clear & Practical)'
+const processIntro = `This is exactly how we execute campaigns:`
+
+const processSteps = [
+  `Step 1: Business Understanding & Goal Setting
+What’s your offer?
+What’s your average ticket size?
+What’s your break-even CPL?
+Without this, ads = gambling.`,
+  `Step 2: Audience Research & Strategy Mapping
+We define:
+Cold audience
+Warm audience
+Hot audience
+Plus interest clusters, lookalike audiences, behavior targeting.`,
+  `Step 3: Funnel & Offer Structuring
+We finalize:
+Lead magnet (if needed)
+Offer positioning
+Landing page / WhatsApp flow`,
+  `Step 4: Creative Production & Copywriting
+We build:
+High-converting ad copies
+Thumb-stopping creatives
+Scroll-stopping hooks
+Focus: Attention → Interest → Action`,
+  `Step 5: Campaign Setup & Tracking Integration
+Campaign structure (CBO / ABO)
+Pixel + Conversion API setup
+Event tracking verification`,
+  `Step 6: Launch & Initial Testing (First 5–7 Days)
+We test:
+Multiple creatives
+Different audiences
+Ad formats
+Goal: find winning combinations`,
+  `Step 7: Optimization Phase
+We analyze:
+CPL trends
+CTR
+Conversion rate
+Then:
+Kill underperforming ads
+Scale winning ads`,
+  `Step 8: Scaling & Retargeting
+Budget scaling
+Retargeting warm audiences
+Upsell / remarketing campaigns`,
+  `Step 9: Reporting That Actually Makes Sense
+No fluff dashboards.
+You’ll see:
+Cost per lead
+Conversion rate
+Revenue generated
+ROAS`,
+]
+
+const chooseTitle = 'Why Businesses in Pune & Across India Choose Leadzoro'
+const chooseBlock = `Because they’re tired of:
+Random ad experiments
+Fake promises
+No ROI clarity
+They want:
+Predictable leads
+Measurable growth
+Clear strategy
+And that’s exactly what we deliver with our Meta Ads Services in Pune, Facebook Ads Agency Pune expertise, and Instagram Ads Services India campaigns.`
+
+const caseTitle = 'Real Case Study — From Wasted Budget to Predictable Leads'
+const caseIntro = `Let’s talk numbers. No theory.
+We worked with a mid-ticket service-based business (coaching niche, India market).`
+
+const caseBefore = `Before Working With Leadzoro:
+Monthly Ad Spend: ₹80,000
+Cost Per Lead (CPL): ₹420
+Lead Quality: Poor (low intent)
+Conversion Rate: ~3%
+ROAS: Not measurable (no proper tracking)
+They were running ads through a typical Facebook Ads Agency Pune setup — campaigns were active, but business impact? Almost zero.`
+
+const caseChanged = `What We Changed (Within First 30 Days):
+
+Rebuilt Targeting Structure
+Segmented cold vs warm audiences
+Introduced lookalike audiences (based on actual converters)
+
+Reworked Entire Creative Strategy
+Shifted from generic posters → UGC-style videos
+Hook optimization (first 3 seconds improved CTR significantly)
+
+Funnel Fix
+Direct WhatsApp → structured landing page + qualification
+Reduced junk leads drastically
+
+Tracking Setup
+Installed Meta Pixel + Conversion API
+Tracked real events (not just clicks)`
+
+const caseResults = `Results (Within 45 Days):
+Cost Per Lead dropped from ₹420 → ₹160 (62% reduction)
+Conversion Rate improved from 3% → 11%
+Monthly Leads increased by 2.3x
+ROAS became measurable and profitable (3.8x)`
+
+const caseMeaning = `What This Actually Means for You:
+Same budget → more leads
+Better leads → higher sales
+Data clarity → confident scaling
+Yahi difference hota hai between “running ads” vs real performance marketing.`
+
+const outcomesTitle = 'What You Can Expect — Clear ROI-Driven Outcomes'
+const outcomesIntro = `When your campaigns are structured correctly, results become predictable.
+Here’s what businesses typically achieve with our Meta Ads Services in Pune:`
+
+const outcomesBlocks = [
+  `Lower Cost Per Lead (CPL)
+Not by luck. By:
+Better targeting
+Strong creatives
+Funnel optimization`,
+  `High-Intent Leads (Quality > Quantity)
+Aapko 100 random leads nahi chahiye.
+Aapko 30 serious buyers chahiye.
+We focus on:
+Intent-driven targeting
+Proper lead qualification`,
+  `Consistent Lead Flow (No Dry Days)
+Campaign structure ensures:
+Continuous inflow of leads
+No dependency on “one viral ad”`,
+  `Scalable Growth System
+Once we find winning ads:
+Budget scaling
+Audience expansion
+Retargeting boost`,
+  `Clear Data & Transparency
+You’ll know:
+Kitna spend hua
+Kitne leads aaye
+Kitni sales hui
+No confusion. No guessing.`,
+  `Better Conversion Ecosystem
+We don’t stop at ads.
+We improve:
+Landing pages
+WhatsApp responses
+Lead follow-up`,
+]
+
+const perfectTitle = 'Who This Service Is Perfect For'
+const perfectIntro = `If you fall into any of these categories, this service is built for you:`
+
+const perfectBlocks = [
+  `Service-Based Businesses
+Digital agencies
+Consultants
+Marketing services
+Need:
+Consistent lead generation`,
+  `Coaches & Course Creators
+Online coaching
+Skill-based training
+Personal branding
+Need:
+Webinar / lead funnel`,
+  `Real Estate Professionals
+Builders
+Brokers
+Property consultants
+Need:
+High-ticket qualified leads`,
+  `Local Businesses (Pune Focus)
+Clinics
+Salons
+Gyms
+Searching for Meta Ads Services in Pune usually want:
+Local targeting
+Walk-ins / bookings`,
+  `Startups & Founders
+MVP stage
+Scaling stage
+Need:
+Fast testing + validation`,
+  `Businesses Scaling Across India
+Looking for Instagram Ads Services India level reach
+Need:
+Pan India targeting
+Scalable campaigns`,
+]
+
+const faqTitle = 'Frequently Asked Questions (FAQs)'
+const faqBlocks = [
+  `How much budget do I need to start Meta Ads?
+Minimum viable budget depends on your industry.
+Local services: ₹15k–₹30k/month
+Coaching / mid-ticket: ₹30k–₹1L/month
+Important:
+Low budget = slower testing
+Higher budget = faster optimization`,
+  `How soon can I expect results?
+Initial data starts within 3–5 days.
+But real optimization happens in:
+2–3 weeks (testing phase)
+30–45 days (stable results)
+Ads are not magic. They are systems.`,
+  `Do you guarantee leads or sales?
+No serious performance marketer guarantees numbers blindly.
+But what we guarantee:
+Structured strategy
+Continuous optimization
+Data-driven decisions
+And that’s what drives results.`,
+  `Will you handle creatives as well?
+Yes. We create:
+Ad copies
+Visual creatives
+Video concepts
+Because creatives = performance driver in Meta Ads.`,
+  `What makes Leadzoro different from other agencies?
+Simple:
+Most agencies:
+Run ads
+Send reports
+Leadzoro:
+Builds funnels
+Optimizes conversion
+Focuses on ROI
+We think like business owners, not ad operators.`,
+  `Can you work with my existing campaigns?
+Yes.
+We audit:
+Current campaigns
+Targeting
+Creatives
+Funnel
+Then optimize or rebuild if needed.`,
+  `Do you work only in Pune?
+No.
+We serve:
+Pune-based businesses
+Pan India clients
+Whether you're searching for a Facebook Ads Agency Pune or scaling nationwide — strategy remains performance-first.`,
+  `What industries do you NOT work with?
+We avoid:
+Misleading offers
+Low-quality products
+Non-serious businesses
+Because performance marketing needs real value behind ads.`,
+]
+
+const ctaTitle = 'Let’s Talk Growth — Not Just Ads'
+const ctaBlock = `Agar aap serious ho:
+Consistent leads chahiye
+Ad spend ka ROI chahiye
+Business scale karna hai
+Then random boosting se kuch nahi hoga.
+You need:
+Strategy
+Funnel
+Execution
+
+🚀 Work With Leadzoro — Meta Ads Experts
+We don’t promise “viral ads”
+We build predictable growth systems
+
+Here’s Your Next Step:
+👉 Get a free strategy call
+👉 We’ll audit your current ads (if running)
+👉 Identify exact gaps
+👉 Show you how to improve ROI
+
+No fluff. No false promises. Just clear strategy.
+
+Leadzoro — Turning Ad Spend Into Revenue`
+
+export default function MetaAdsServicesPage() {
   return (
-    <motion.div
-      ref={ref}
-      initial={{ opacity: 0, y: 20 }}
-      animate={inView ? { opacity: 1, y: 0 } : {}}
-      transition={{ duration: 0.6, delay }}
-      className="bg-white p-6 rounded-xl shadow-md hover:shadow-2xl transition-all duration-300 border border-slate-100"
-    >
-      <div className="flex items-center mb-4">
-        <Icon className="text-primary-500 text-3xl mr-3" />
-        <h3 className="text-xl font-bold text-slate-900">{title}</h3>
-      </div>
-      <p className="text-slate-700">{content}</p>
-    </motion.div>
-  )
-}
-
-interface ProcessStepProps {
-  number: string;
-  title: string;
-  description: string;
-  delay?: number;
-}
-
-const ProcessStep = ({ number, title, description, delay = 0 }: ProcessStepProps) => {
-  const { ref, inView } = useInView({
-    triggerOnce: true,
-    threshold: 0.1,
-  })
-
-  return (
-    <motion.div
-      ref={ref}
-      initial={{ opacity: 0, x: -50 }}
-      animate={inView ? { opacity: 1, x: 0 } : {}}
-      transition={{ duration: 0.6, delay }}
-      className="flex items-start space-x-4"
-    >
-      <div className="flex-shrink-0 w-12 h-12 rounded-full bg-gradient-to-r from-primary-500 to-secondary-500 flex items-center justify-center">
-        <span className="text-xl font-bold text-white">{number}</span>
-      </div>
-      <div>
-        <h3 className="text-xl font-bold text-slate-900 mb-2">{title}</h3>
-        <p className="text-slate-700">{description}</p>
-      </div>
-    </motion.div>
-  )
-}
-
-interface FeatureListProps {
-  items: string[];
-  className?: string;
-}
-
-const FeatureList = ({ items, className = "" }: FeatureListProps) => {
-  const { ref, inView } = useInView({
-    triggerOnce: true,
-    threshold: 0.1,
-  })
-
-  return (
-    <motion.ul
-      ref={ref}
-      className={`space-y-3 ${className}`}
-    >
-      {items.map((item: string, index: number) => (
-        <motion.li
-          key={index}
-          initial={{ opacity: 0, x: -20 }}
-          animate={inView ? { opacity: 1, x: 0 } : {}}
-          transition={{ duration: 0.5, delay: index * 0.1 }}
-          className="flex items-start space-x-3"
-        >
-          <FaCheckCircle className="text-primary-500 text-xl flex-shrink-0 mt-1" />
-          <span className="text-slate-700">{item}</span>
-        </motion.li>
-      ))}
-    </motion.ul>
-  )
-}
-
-interface BenefitItemProps {
-  text: string;
-  delay?: number;
-}
-
-const BenefitItem = ({ text, delay = 0 }: BenefitItemProps) => {
-  const { ref, inView } = useInView({
-    triggerOnce: true,
-    threshold: 0.1,
-  })
-
-  return (
-    <motion.div
-      ref={ref}
-      initial={{ opacity: 0, x: -20 }}
-      animate={inView ? { opacity: 1, x: 0 } : {}}
-      transition={{ duration: 0.5, delay }}
-      className="flex items-start space-x-3"
-    >
-      <FaCheckCircle className="text-primary-500 text-xl flex-shrink-0 mt-1" />
-      <p className="text-slate-700">{text}</p>
-    </motion.div>
-  )
-}
-
-interface ServiceSectionProps {
-  title: string;
-  description: string;
-  features: string[];
-  image: any;
-  imageAlt: string;
-  reverse?: boolean;
-  bgClass?: string;
-}
-
-const ServiceSection = ({ 
-  title, 
-  description, 
-  features, 
-  image, 
-  imageAlt, 
-  reverse = false, 
-  bgClass = "bg-white" 
-}: ServiceSectionProps) => {
-  const { ref, inView } = useInView({
-    triggerOnce: true,
-    threshold: 0.1,
-  })
-
-  return (
-    <section className={`py-20 ${bgClass} relative overflow-hidden`}>
-      <div className="absolute inset-0 -z-10">
-        <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-br from-primary-500/6 to-secondary-500/6" />
-        <div className="absolute top-1/4 right-0 w-96 h-96 bg-primary-500/6 rounded-full filter blur-3xl animate-float" />
-        <div className="absolute bottom-1/4 left-0 w-96 h-96 bg-secondary-500/6 rounded-full filter blur-3xl animate-float" />
-      </div>
-
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className={`grid grid-cols-1 lg:grid-cols-2 gap-12 items-center ${reverse ? 'lg:flex-row-reverse' : ''}`}>
-          <motion.div
-            initial={{ opacity: 0, x: reverse ? 50 : -50 }}
-            animate={inView ? { opacity: 1, x: 0 } : {}}
-            transition={{ duration: 0.8 }}
-            className="space-y-8"
-          >
-            <motion.h2
-              className="text-3xl md:text-4xl font-bold"
-              initial={{ opacity: 0, y: 20 }}
-              animate={inView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.8 }}
-            >
-              <span className="gradient-text text-slate-900">{title}</span>
-            </motion.h2>
-
-            <motion.div
-              className="space-y-6 text-lg text-slate-700"
-              initial={{ opacity: 0, y: 20 }}
-              animate={inView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.8, delay: 0.2 }}
-            >
-              <p>{description}</p>
-              {features && (
-                <div className="mt-6">
-                  <FeatureList items={features} />
-                </div>
-              )}
-            </motion.div>
-          </motion.div>
-
-          <motion.div
-            initial={{ opacity: 0, x: reverse ? -50 : 50 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true, amount: 0.2 }}
-            transition={{ duration: 0.8, delay: 0.4 }}
-            className="relative aspect-[4/3] w-full rounded-2xl overflow-hidden shadow-md"
-          >
-            <div className="absolute inset-0 bg-gradient-to-tr from-primary-500/12 to-secondary-500/12 z-10 pointer-events-none opacity-20" />
-            <Image
-              src={image}
-              alt={imageAlt}
-              fill
-              className="object-cover object-center transform hover:scale-105 transition-transform duration-700"
-              sizes="(max-width: 768px) 100vw, 50vw"
-              priority
-            />
-          </motion.div>
-        </div>
-      </div>
-    </section>
-  )
-}
-
-interface IndustryCardProps {
-  title: string;
-  delay?: number;
-}
-
-const IndustryCard = ({ title, delay = 0 }: IndustryCardProps) => {
-  const { ref, inView } = useInView({
-    triggerOnce: true,
-    threshold: 0.1,
-  })
-
-  return (
-    <motion.div
-      ref={ref}
-      initial={{ opacity: 0, y: 20 }}
-      animate={inView ? { opacity: 1, y: 0 } : {}}
-      transition={{ duration: 0.5, delay }}
-      className="bg-white p-6 rounded-xl hover:shadow-2xl transform hover:-translate-y-1 transition-all duration-300 border border-slate-100"
-    >
-      <h3 className="text-lg font-semibold text-slate-900">{title}</h3>
-      <div className="mt-2 h-1 w-12 bg-gradient-to-r from-primary-500 to-secondary-500 rounded-full" />
-    </motion.div>
-  )
-}
-
-interface FAQItemProps {
-  question: string;
-  answer: string;
-}
-
-const FAQItem = ({ question, answer }: FAQItemProps) => {
-  const [isOpen, setIsOpen] = useState(false)
-
-  return (
-    <motion.div className="border-b border-slate-100">
-      <button
-        onClick={() => setIsOpen(!isOpen)}
-        className="w-full py-6 flex justify-between items-center text-left focus:outline-none group"
-      >
-        <span className="text-xl font-semibold text-slate-900 group-hover:text-primary-500 transition-colors">
-          {question}
-        </span>
-        <motion.span
-          animate={{ rotate: isOpen ? 180 : 0 }}
-          transition={{ duration: 0.3 }}
-          className="text-primary-500"
-        >
-          <svg
-            className="w-6 h-6"
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth={2}
-              d="M19 9l-7 7-7-7"
-            />
-          </svg>
-        </motion.span>
-      </button>
-      <motion.div
-        initial={false}
-        animate={{
-          height: isOpen ? "auto" : 0,
-          opacity: isOpen ? 1 : 0,
-          marginBottom: isOpen ? 16 : 0
-        }}
-        transition={{
-          duration: 0.3,
-          ease: "easeInOut"
-        }}
-        className="overflow-hidden"
-      >
-        <p className="text-slate-700 pb-6">{answer}</p>
-      </motion.div>
-    </motion.div>
-  )
-}
-
-const ServicesPage = () => {
-  const { ref, inView } = useInView({
-    triggerOnce: true,
-    threshold: 0.1,
-  })
-
-  const targetingFeatures = [
-    'Interests and demographics',
-    'Geographic location (like Pune, Mumbai, or PAN India)',
-    'User behaviors, shopping habits, and more'
-  ]
-
-  return (
-    <>
-      <div className="min-h-screen bg-gradient-to-b from-blue-50 to-cyan-50 text-slate-900">
+    <div className="min-h-screen bg-white text-gray-900">
         <Navbar />
-        {/* Hero Section */}
-        <section className="pt-32 pb-16 relative overflow-hidden">
-          <div className="absolute inset-0 -z-10">
-            <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-br from-primary-500/6 to-secondary-500/6" />
-            <div className="absolute -top-40 -right-40 w-96 h-96 bg-primary-500/12 rounded-full filter blur-3xl animate-float" />
-            <div className="absolute -bottom-40 -left-40 w-96 h-96 bg-secondary-500/12 rounded-full filter blur-3xl animate-float" />
-          </div>
 
-          <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-              {/* Content Side */}
-              <motion.div
-                ref={ref}
-                initial={{ opacity: 0, x: -50 }}
-                animate={inView ? { opacity: 1, x: 0 } : {}}
-                transition={{ duration: 0.8 }}
-                className="lg:pr-8"
-              >
-                <motion.h1 
-                  className="text-4xl md:text-5xl font-bold mb-6 text-slate-900"
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={inView ? { opacity: 1, y: 0 } : {}}
-                  transition={{ duration: 0.8, delay: 0.2 }}
-                >
-                  <span className="gradient-text">Meta Ads Services</span>
-                  <br />
-                  <span className="text-slate-900">That Drive Measurable Growth</span>
-                </motion.h1>
-                
-                <motion.div
-                  className="space-y-6 text-lg text-slate-700"
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={inView ? { opacity: 1, y: 0 } : {}}
-                  transition={{ duration: 0.8, delay: 0.4 }}
-                >
-                  <p>
-                    If you're a business owner, e-commerce founder, or service provider in India (especially Pune), 
-                    you already know this: people spend a lot of time on Facebook and Instagram. But what if your brand 
-                    could show up exactly where your audience scrolls every day — with an offer they can't ignore?
-                  </p>
-                  <p className="text-xl font-semibold text-slate-900">
-                    That's the power of Meta Ads — and at Leadzoro, we help you unlock it.
-                  </p>
-                  <p>
-                    We're not just another social media advertising company. We're a ROI-focused, results-obsessed 
-                    Meta Ads expert in India, helping you generate leads, boost sales, and scale profitably with 
-                    tailored Facebook and Instagram ad strategies.
-                  </p>
-                  <p>
-                    We go beyond impressions and clicks. We create digital journeys — guiding users from awareness 
-                    to conversion using high-converting ad funnels, backed by real-time analytics, creative storytelling, 
-                    and ROI-focused scaling.
-                  </p>
-                </motion.div>
+      <Section>
+        <div className="container">
+          <ScrollReveal className="max-w-4xl">
+            <h1 className="text-4xl md:text-5xl font-semibold text-gray-900">{heroTitle}</h1>
+            <p className="mt-6 whitespace-pre-line prose-block">{heroIntro}</p>
 
-                <motion.div
-                  className="mt-8"
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={inView ? { opacity: 1, y: 0 } : {}}
-                  transition={{ duration: 0.8, delay: 0.6 }}
-                >
-                  <motion.button
-                    whileHover={{ scale: 1.05 }}
-                    whileTap={{ scale: 0.95 }}
-                    className="btn-primary text-lg px-8 py-4"
-                  >
-                    Get Started Now
-                  </motion.button>
-                </motion.div>
-              </motion.div>
-
-              {/* Image Side */}
-              <motion.div
-                initial={{ opacity: 0, x: 50 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true, amount: 0.2 }}
-                transition={{ duration: 0.8, delay: 0.4 }}
-                className="relative h-[400px] lg:h-[450px] w-full rounded-xl overflow-hidden shadow-md group"
-              >
-                <div className="absolute inset-0 bg-gradient-to-tr from-primary-500/12 to-secondary-500/12 z-10 pointer-events-none opacity-20 group-hover:opacity-40 transition-opacity duration-300" />
-                <Image
-                  src={Services1}
-                  alt="Meta Ads Services"
-                  fill
-                  className="object-cover object-center transform group-hover:scale-105 transition-transform duration-700"
-                  sizes="(max-width: 768px) 100vw, 50vw"
-                  priority
-                />
-              </motion.div>
+            <div className="mt-8">
+              <Button className="text-base md:text-lg" href="/contact-us">
+                Get Free Strategy Call
+              </Button>
             </div>
+          </ScrollReveal>
           </div>
-        </section>
+      </Section>
 
-        {/* What Are Meta Ads Section */}
-        <ServiceSection
-          title="What Are Meta Ads?"
-          description="Meta Ads are paid advertising campaigns that run across Meta platforms — Facebook, Instagram, Messenger, and the Meta Audience Network. These ads can be designed to do everything from building brand awareness to generating direct conversions."
-          features={[
-            "Reach your target audience across all Meta platforms",
-            "Drive measurable business results with precision targeting",
-            "Create engaging ad experiences that convert",
-            "Track and optimize performance in real-time"
-          ]}
-          image={Services2}
-          imageAlt="What Are Meta Ads"
-          bgClass="bg-white"
-          reverse={false}
-        />
-
-        {/* Why Choose Leadzoro Section */}
-        <section className="py-20 bg-white relative overflow-hidden">
-          {/* Background Elements */}
-          <div className="absolute inset-0 -z-10">
-            <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-br from-primary-500/6 to-secondary-500/6" />
-            <div className="absolute top-1/4 right-0 w-96 h-96 bg-primary-500/6 rounded-full filter blur-3xl animate-float" />
-            <div className="absolute bottom-1/4 left-0 w-96 h-96 bg-secondary-500/6 rounded-full filter blur-3xl animate-float" />
+      <Section tone="gray">
+        <div className="container">
+          <ScrollReveal className="max-w-5xl">
+            <h2 className="text-2xl md:text-3xl font-semibold text-gray-900">Truth?</h2>
+            <Card className="mt-6">
+              <p className="whitespace-pre-line prose-block">{truthBlock}</p>
+              <ul className="mt-4 list-disc pl-5 space-y-2 text-gray-700">
+                {truthBullets.map((t) => (
+                  <li key={t}>{t}</li>
+                ))}
+              </ul>
+              <p className="mt-4 whitespace-pre-line prose-block">{truthResult}</p>
+            </Card>
+          </ScrollReveal>
           </div>
+      </Section>
 
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-              {/* Content Side */}
-              <motion.div
-                initial={{ opacity: 0, x: -50 }}
-                animate={inView ? { opacity: 1, x: 0 } : {}}
-                transition={{ duration: 0.8 }}
-                className="space-y-8"
-              >
-                <motion.h2
-                  className="text-3xl md:text-4xl font-bold"
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={inView ? { opacity: 1, y: 0 } : {}}
-                  transition={{ duration: 0.8 }}
-                >
-                  <span className="gradient-text text-slate-900">Why Choose Leadzoro</span>
-                  <br />
-                  <span className="text-slate-900">for Meta Ads?</span>
-                </motion.h2>
-
-                <p className="text-xl text-slate-700">
-                  There are many Facebook Ads agencies in India. But here's why Pune-based businesses 
-                  (and 100+ Indian brands) trust Leadzoro:
-                </p>
-
-                <div className="space-y-4">
-                  <BenefitItem 
-                    text="We deliver results — not just impressions. From 3x ROAS to 5x lead volume, we're known for performance."
-                    delay={0.2}
-                  />
-                  <BenefitItem 
-                    text="We specialize only in Meta platforms — meaning our full focus is on Facebook and Instagram marketing."
-                    delay={0.3}
-                  />
-                  <BenefitItem 
-                    text="We build scalable campaigns — tailored for e-commerce, coaching, real estate, and more."
-                    delay={0.4}
-                  />
-                  <BenefitItem 
-                    text="We're transparent — weekly reports, real-time dashboards, and no fluff."
-                    delay={0.5}
-                  />
-                  <BenefitItem 
-                    text="We're local — offering personalized Meta Ads Services in Pune with a national delivery mindset."
-                    delay={0.6}
-                  />
-                </div>
-
-                <motion.div
-                  className="space-y-4 text-lg"
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={inView ? { opacity: 1, y: 0 } : {}}
-                  transition={{ duration: 0.8, delay: 0.7 }}
-                >
-                  <p>
-                    Whether you're looking for Affordable Meta Ads Services for Small Businesses 
-                    or high-ticket conversion campaigns, we've got you covered.
-                  </p>
-                  <p>
-                    We don't just create ads — we create a predictable sales engine. Every campaign 
-                    is data-backed, strategy-first, and optimized for outcomes that matter: leads, 
-                    sales, and brand growth.
-                  </p>
-                  <p className="text-xl font-semibold text-slate-900">
-                    And yes — we've seen brands grow from ₹0 to ₹10L/month in revenue through Meta Ads alone.
-                  </p>
-                </motion.div>
-
-                <motion.div
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={inView ? { opacity: 1, y: 0 } : {}}
-                  transition={{ duration: 0.8, delay: 0.8 }}
-                >
-                  <motion.button
-                    whileHover={{ scale: 1.05 }}
-                    whileTap={{ scale: 0.95 }}
-                    className="btn-primary text-lg px-8 py-4"
-                  >
-                    Start Your Growth Journey
-                  </motion.button>
-                </motion.div>
-              </motion.div>
-
-              {/* Image Side */}
-              <motion.div
-                initial={{ opacity: 0, x: 50 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true, amount: 0.2 }}
-                transition={{ duration: 0.8, delay: 0.4 }}
-                className="relative h-[400px] lg:h-[450px] w-full rounded-xl overflow-hidden shadow-md group"
-              >
-                <Image
-                  src={Services3}
-                  alt="Why Choose Leadzoro"
-                  fill
-                  className="object-cover object-center transform group-hover:scale-105 transition-transform duration-700"
-                  sizes="(max-width: 768px) 100vw, 50vw"
-                  priority
-                />
-              </motion.div>
+      <Section>
+        <div className="container">
+          <ScrollReveal className="max-w-5xl">
+            <h2 className="text-2xl md:text-3xl font-semibold text-gray-900">{whatExactlyTitle}</h2>
+            <div className="mt-6 space-y-6">
+              <p className="whitespace-pre-line prose-block">{whatExactlyPara1}</p>
+              <Card variant="highlight">
+                <p className="whitespace-pre-line prose-block">{whatExactlyPara2}</p>
+              </Card>
             </div>
+          </ScrollReveal>
           </div>
-        </section>
+      </Section>
 
-        {/* Facebook Ad Campaign Management */}
-        <ServiceSection
-          title="Facebook Ad Campaign Management"
-          description="As a leading Facebook Advertising Agency, we create customized campaigns that align with your brand goals — be it website traffic, sales, or app installs."
-          features={[
-            "Audience research & competitor targeting",
-            "Conversion-optimized ad copy",
-            "A/B testing on creatives and headlines",
-            "Retargeting for abandoned carts or website visitors",
-            "Detailed reporting with ROAS, CTR, and cost per result"
-          ]}
-          image={Services4}
-          imageAlt="Facebook Ad Campaign Management"
-          bgClass="bg-white"
-        />
-
-        {/* Instagram Ad Targeting */}
-        <ServiceSection
-          title="Instagram Ad Targeting & Optimization"
-          description="Instagram is more than pretty pictures — it's a conversion powerhouse. Our Instagram Marketing Services help you dominate Instagram Reels, Stories, Feed, and Explore with creative ads that feel organic but sell like crazy."
-          features={[
-            "Reels & Story ads optimized for mobile",
-            "Local targeting for Instagram Marketing Pune",
-            "Visual storytelling to boost brand recall",
-            "High-converting video & carousel formats"
-          ]}
-          image={Services5}
-          imageAlt="Instagram Ad Targeting"
-          reverse={true}
-          bgClass="bg-white"
-        />
-
-        {/* Lead Generation */}
-        <ServiceSection
-          title="Lead Generation & Funnel Ads"
-          description="We craft lead generation ads that convert. From Meta Instant Forms to WhatsApp inquiries and CRM-integrated lead flows — we ensure you don't just get leads, but the right ones."
-          features={[
-            "E-commerce Facebook Advertising Experts with high-intent product leads",
-            "Coaching & education brands building webinar lists",
-            "Real estate projects capturing site visit interest"
-          ]}
-          image={Services6}
-          imageAlt="Lead Generation & Funnel Ads"
-          bgClass="bg-white"
-        />
-
-        {/* Retargeting */}
-        <ServiceSection
-          title="Retargeting & Remarketing Ads"
-          description="Retargeting is where 70% of conversions happen. Our goal is to maximize every rupee you've already invested in awareness. With our funnel-based approach, retargeting becomes a high-converting powerhouse."
-          features={[
-            "Re-engage past website visitors",
-            "Target video viewers or social engagers",
-            "Upsell & cross-sell based on purchase history"
-          ]}
-          image={Services7}
-          imageAlt="Retargeting & Remarketing Ads"
-          reverse={true}
-          bgClass="bg-white"
-        />
-
-        {/* Process Section */}
-        <section className="py-20 bg-white relative overflow-hidden">
-          <div className="absolute inset-0 -z-10">
-            <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-br from-primary-500/6 to-secondary-500/6" />
-            <div className="absolute top-1/4 right-0 w-96 h-96 bg-primary-500/6 rounded-full filter blur-3xl animate-float" />
-            <div className="absolute bottom-1/4 left-0 w-96 h-96 bg-secondary-500/6 rounded-full filter blur-3xl animate-float" />
+      <Section tone="gray">
+        <div className="container">
+          <ScrollReveal className="max-w-5xl">
+            <h2 className="text-2xl md:text-3xl font-semibold text-gray-900">{whatYouGetTitle}</h2>
+            <Card className="mt-6">
+              <ul className="list-disc pl-5 space-y-2 text-gray-700">
+                {whatYouGetBullets.map((t) => (
+                  <li key={t}>{t}</li>
+                ))}
+              </ul>
+            </Card>
+            <p className="mt-6 whitespace-pre-line prose-block">{whatYouGetPara}</p>
+          </ScrollReveal>
           </div>
+      </Section>
 
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="text-center mb-12">
-              <motion.h2 
-                className="text-4xl md:text-5xl font-bold mb-6 text-slate-900"
-                initial={{ opacity: 0, y: 20 }}
-                animate={inView ? { opacity: 1, y: 0 } : {}}
-                transition={{ duration: 0.8 }}
-              >
-                <span className="gradient-text">Our 5-Step Meta Ads Process</span>
-              </motion.h2>
-              <motion.p
-                className="text-xl text-slate-700"
-                initial={{ opacity: 0, y: 20 }}
-                animate={inView ? { opacity: 1, y: 0 } : {}}
-                transition={{ duration: 0.8, delay: 0.2 }}
-              >
-                We follow a battle-tested, performance-driven structure for every campaign:
-              </motion.p>
-            </div>
-
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
-              {/* Left Column - Process Steps */}
-              <motion.div
-                initial={{ opacity: 0, x: -50 }}
-                animate={inView ? { opacity: 1, x: 0 } : {}}
-                transition={{ duration: 0.8 }}
-                className="space-y-12"
-              >
-                <motion.div
-                  className="space-y-8"
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={inView ? { opacity: 1, y: 0 } : {}}
-                  transition={{ duration: 0.8, delay: 0.2 }}
-                >
-                  <div className="space-y-6">
-                    <div className="flex items-start space-x-4">
-                      <div className="flex-shrink-0 w-12 h-12 rounded-full bg-gradient-to-r from-primary-500 to-secondary-500 flex items-center justify-center">
-                        <span className="text-xl font-bold text-white">1</span>
-                      </div>
-                      <div>
-                        <h3 className="text-2xl font-bold text-slate-900 mb-4">Strategy Session</h3>
-                        <div className="space-y-3 text-slate-700">
-                          <p>We start with a discovery call to understand your goals, budget, and customer journey.</p>
-                          <p>We deep-dive into your product-market fit, industry benchmarks, and competitor analysis to lay the foundation.</p>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-
-                  <div className="space-y-6">
-                    <div className="flex items-start space-x-4">
-                      <div className="flex-shrink-0 w-12 h-12 rounded-full bg-gradient-to-r from-primary-500 to-secondary-500 flex items-center justify-center">
-                        <span className="text-xl font-bold text-white">2</span>
-                      </div>
-                      <div>
-                        <h3 className="text-2xl font-bold text-slate-900 mb-4">Ad Creative & Copy Design</h3>
-                        <div className="space-y-3 text-slate-700">
-                          <p>We write compelling, conversion-driven copy and pair it with scroll-stopping creatives (images, videos, Reels).</p>
-                          <p>Our in-house team follows performance creative frameworks designed for Meta — so every asset not only looks good but sells.</p>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-
-                  <div className="space-y-6">
-                    <div className="flex items-start space-x-4">
-                      <div className="flex-shrink-0 w-12 h-12 rounded-full bg-gradient-to-r from-primary-500 to-secondary-500 flex items-center justify-center">
-                        <span className="text-xl font-bold text-white">3</span>
-                      </div>
-                      <div>
-                        <h3 className="text-2xl font-bold text-slate-900 mb-4">Campaign Setup</h3>
-                        <div className="space-y-3 text-slate-700">
-                          <p>We set up ad sets with optimized targeting, pixel events, bidding strategy, and tracking integrations.</p>
-                          <p>This includes event mapping, domain verification, API setups, and audience segmentation.</p>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-
-                  <div className="space-y-6">
-                    <div className="flex items-start space-x-4">
-                      <div className="flex-shrink-0 w-12 h-12 rounded-full bg-gradient-to-r from-primary-500 to-secondary-500 flex items-center justify-center">
-                        <span className="text-xl font-bold text-white">4</span>
-                      </div>
-                      <div>
-                        <h3 className="text-2xl font-bold text-slate-900 mb-4">Daily Optimization</h3>
-                        <div className="space-y-3 text-slate-700">
-                          <p>Our team monitors every ad — adjusting bids, pausing underperformers, and scaling winners.</p>
-                          <p>We also rotate creatives weekly and test headlines, CTA buttons, and placements for continuous growth.</p>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-
-                  <div className="space-y-6">
-                    <div className="flex items-start space-x-4">
-                      <div className="flex-shrink-0 w-12 h-12 rounded-full bg-gradient-to-r from-primary-500 to-secondary-500 flex items-center justify-center">
-                        <span className="text-xl font-bold text-white">5</span>
-                      </div>
-                      <div>
-                        <h3 className="text-2xl font-bold text-slate-900 mb-4">Scaling & Reporting</h3>
-                        <div className="space-y-3 text-slate-700">
-                          <p>Once results are consistent, we increase budget, test new audiences, and send weekly reports.</p>
-                          <p>We offer Google Data Studio dashboards and strategy calls to keep you aligned and in control.</p>
-                          <p className="text-lg font-semibold text-slate-900">You'll always know what's working, why, and what comes next.</p>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </motion.div>
-              </motion.div>
-
-              {/* Right Column - Image */}
-              <motion.div
-                initial={{ opacity: 0, x: 50 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true, amount: 0.2 }}
-                transition={{ duration: 0.8, delay: 0.4 }}
-                className="relative aspect-[4/3] w-full rounded-2xl overflow-hidden shadow-md lg:sticky lg:top-32"
-              >
-                <div className="absolute inset-0 bg-gradient-to-tr from-primary-500/12 to-secondary-500/12 z-10 pointer-events-none opacity-20" />
-                <Image
-                  src={Services9}
-                  alt="Our 5-Step Meta Ads Process"
-                  fill
-                  className="object-cover object-center transform hover:scale-105 transition-transform duration-700"
-                  sizes="(max-width: 768px) 100vw, 50vw"
-                  priority
-                />
-              </motion.div>
-            </div>
-          </div>
-        </section>
-
-        {/* FAQ Section */}
-        <section className="py-20 bg-white relative overflow-hidden">
-          <div className="absolute inset-0 -z-10">
-            <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-br from-primary-500/6 to-secondary-500/6" />
-            <div className="absolute top-1/4 right-0 w-96 h-96 bg-primary-500/6 rounded-full filter blur-3xl animate-float" />
-            <div className="absolute bottom-1/4 left-0 w-96 h-96 bg-secondary-500/6 rounded-full filter blur-3xl animate-float" />
-          </div>
-
-          <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={inView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.8 }}
-              className="text-center mb-12"
-            >
-              <h2 className="text-4xl md:text-5xl font-bold mb-6 text-slate-900">
-                <span className="gradient-text">FAQs – Meta Ads with Leadzoro</span>
-              </h2>
-            </motion.div>
-
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={inView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.8, delay: 0.2 }}
-              className="space-y-2"
-            >
-              <FAQItem
-                question="What's the ideal budget for Meta Ads?"
-                answer="We recommend ₹10,000–₹25,000/month to start. We scale based on results, not guesswork."
-              />
-              <FAQItem
-                question="How quickly can I see results?"
-                answer="Most campaigns show performance in 7–14 days. Full ROAS optimization may take 4–6 weeks."
-              />
-              <FAQItem
-                question="Do I need to provide creatives?"
-                answer="Nope. Our in-house team handles all copywriting, banners, videos, and editing."
-              />
-              <FAQItem
-                question="Is this service good for small businesses in Pune?"
-                answer="Absolutely. Our Affordable Meta Ads Services for Small Businesses are built to generate real leads on a modest budget."
-              />
-              <FAQItem
-                question="Will I get reports?"
-                answer="Yes. Weekly performance dashboards + a dedicated account manager = full transparency."
-              />
-              <FAQItem
-                question="Can you integrate WhatsApp or CRM tools?"
-                answer="Yes. We support Meta form integrations with WhatsApp, Zapier, HubSpot, Zoho, and more."
-              />
-              <FAQItem
-                question="What makes Leadzoro different from other agencies?"
-                answer="We focus only on Meta platforms. We're not generalists — we're platform specialists with a proven track record."
-              />
-            </motion.div>
-          </div>
-        </section>
-
-        {/* Services Grid */}
-        <section className="py-20 bg-gradient-to-b from-white to-slate-50">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-              <ServiceCard
-                title="Facebook Ad Campaign Management"
-                content="Custom campaigns aligned with your brand goals. From audience research to A/B testing, we handle it all with detailed ROAS reporting."
-                icon={FaFacebookF}
-                delay={0.2}
-              />
-              <ServiceCard
-                title="Instagram Ad Targeting"
-                content="Dominate Instagram Reels, Stories, Feed, and Explore with creative ads that feel organic but sell like crazy."
-                icon={FaInstagram}
-                delay={0.4}
-              />
-              <ServiceCard
-                title="Lead Generation & Funnel Ads"
-                content="From Meta Instant Forms to WhatsApp inquiries and CRM-integrated lead flows — we ensure you get the right leads."
-                icon={FaUsers}
-                delay={0.6}
-              />
-              <ServiceCard
-                title="Retargeting & Remarketing"
-                content="Advanced remarketing strategies to re-engage past visitors and maximize every rupee invested in awareness."
-                icon={FaBullseye}
-                delay={0.8}
-              />
-            </div>
-          </div>
-        </section>
-
-        {/* Who We Help Section */}
-        <section className="py-20 bg-gradient-to-b from-white to-slate-50 relative overflow-hidden">
-          {/* Background Elements */}
-          <div className="absolute inset-0 -z-10">
-            <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-br from-primary-500/6 to-secondary-500/6" />
-            <div className="absolute top-1/4 right-0 w-96 h-96 bg-primary-500/6 rounded-full filter blur-3xl animate-float" />
-            <div className="absolute bottom-1/4 left-0 w-96 h-96 bg-secondary-500/6 rounded-full filter blur-3xl animate-float" />
-          </div>
-
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={inView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.8 }}
-              className="text-center mb-16"
-            >
-              <h2 className="text-4xl md:text-5xl font-bold mb-6 text-slate-900">
-                <span className="gradient-text">Who We Help</span>
-              </h2>
-              <p className="text-xl text-slate-700">
-                Our Meta Ads Services in India are trusted by:
-              </p>
-            </motion.div>
-
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-16">
-              {[
-                "E-commerce brands",
-                "Startups & D2C founders",
-                "Real estate builders",
-                "Coaching institutes & online educators",
-                "Local service providers (salons, clinics, gyms)",
-                "Corporate training agencies",
-                "Fintech & SaaS companies",
-                "Event & webinar organizers",
-                "Fashion, food, and fitness brands"
-              ].map((industry, index) => (
-                <IndustryCard
-                  key={industry}
-                  title={industry}
-                  delay={index * 0.1}
-                />
+      <Section>
+        <div className="container">
+          <ScrollReveal className="max-w-5xl">
+            <h2 className="text-2xl md:text-3xl font-semibold text-gray-900">{painTitle}</h2>
+            <p className="mt-4 whitespace-pre-line prose-block">{painIntro}</p>
+            <div className="mt-6 grid gap-6 md:grid-cols-2">
+              {painPoints.map((p) => (
+                <Card key={p} variant="highlight">
+                  <p className="whitespace-pre-line prose-block">{p}</p>
+                </Card>
               ))}
             </div>
+            <Card className="mt-6" variant="highlight">
+              <p className="whitespace-pre-line prose-block">{painClose}</p>
+            </Card>
+          </ScrollReveal>
+                      </div>
+      </Section>
 
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={inView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.8, delay: 0.5 }}
-              className="text-center space-y-6"
-            >
-              <p className="text-xl text-slate-700">
-                Whether you're launching, scaling, or reviving — our team customizes campaigns 
-                to your exact industry.
-              </p>
-              <p className="text-xl text-slate-700">
-                We've helped everything from first-time founders to enterprise-level clients 
-                dominate Meta Ads platforms. Whatever your stage, we're ready to take you 
-                to the next level.
-              </p>
-              <motion.button
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                className="btn-primary text-lg px-8 py-4 mt-8"
-              >
-                Start Your Growth Journey
-              </motion.button>
-            </motion.div>
+      <Section tone="gray">
+        <div className="container">
+          <ScrollReveal className="max-w-5xl">
+            <h2 className="text-2xl md:text-3xl font-semibold text-gray-900">{approachTitle}</h2>
+            <p className="mt-4 whitespace-pre-line prose-block">{approachIntro}</p>
+            <div className="mt-6 grid gap-6 md:grid-cols-2">
+              {approachBlocks.map((b) => (
+                <Card key={b}>
+                  <p className="whitespace-pre-line prose-block">{b}</p>
+                </Card>
+              ))}
+                      </div>
+          </ScrollReveal>
+                        </div>
+      </Section>
+
+      <Section>
+        <div className="container">
+          <ScrollReveal className="max-w-5xl">
+            <h2 className="text-2xl md:text-3xl font-semibold text-gray-900">{processTitle}</h2>
+            <p className="mt-4 whitespace-pre-line prose-block">{processIntro}</p>
+            <div className="mt-6 grid gap-6 md:grid-cols-2">
+              {processSteps.map((s) => (
+                <Card key={s}>
+                  <p className="whitespace-pre-line prose-block">{s}</p>
+                </Card>
+              ))}
+                      </div>
+          </ScrollReveal>
+                        </div>
+      </Section>
+
+      <Section tone="gray">
+        <div className="container">
+          <ScrollReveal className="max-w-5xl">
+            <h2 className="text-2xl md:text-3xl font-semibold text-gray-900">{chooseTitle}</h2>
+            <Card className="mt-6" variant="highlight">
+              <p className="whitespace-pre-line prose-block">{chooseBlock}</p>
+            </Card>
+          </ScrollReveal>
+                      </div>
+      </Section>
+
+      <Section>
+        <div className="container">
+          <ScrollReveal className="max-w-5xl">
+            <h2 className="text-2xl md:text-3xl font-semibold text-gray-900">{caseTitle}</h2>
+            <p className="mt-4 whitespace-pre-line prose-block">{caseIntro}</p>
+            <div className="mt-6 grid gap-6 md:grid-cols-2">
+              <Card>
+                <p className="whitespace-pre-line prose-block">{caseBefore}</p>
+              </Card>
+              <Card>
+                <p className="whitespace-pre-line prose-block">{caseResults}</p>
+              </Card>
+                      </div>
+            <div className="mt-6 grid gap-6 md:grid-cols-2">
+              <Card variant="highlight">
+                <p className="whitespace-pre-line prose-block">{caseChanged}</p>
+              </Card>
+              <Card variant="highlight">
+                <p className="whitespace-pre-line prose-block">{caseMeaning}</p>
+              </Card>
+                        </div>
+          </ScrollReveal>
+                      </div>
+      </Section>
+
+      <Section tone="gray">
+        <div className="container">
+          <ScrollReveal className="max-w-5xl">
+            <h2 className="text-2xl md:text-3xl font-semibold text-gray-900">{outcomesTitle}</h2>
+            <p className="mt-4 whitespace-pre-line prose-block">{outcomesIntro}</p>
+            <div className="mt-6 grid gap-6 md:grid-cols-2">
+              {outcomesBlocks.map((b) => (
+                <Card key={b}>
+                  <p className="whitespace-pre-line prose-block">{b}</p>
+                </Card>
+              ))}
+            </div>
+          </ScrollReveal>
           </div>
-        </section>
+      </Section>
+
+      <Section>
+        <div className="container">
+          <ScrollReveal className="max-w-5xl">
+            <h2 className="text-2xl md:text-3xl font-semibold text-gray-900">{perfectTitle}</h2>
+            <p className="mt-4 whitespace-pre-line prose-block">{perfectIntro}</p>
+            <div className="mt-6 grid gap-6 md:grid-cols-2">
+              {perfectBlocks.map((b) => (
+                <Card key={b}>
+                  <p className="whitespace-pre-line prose-block">{b}</p>
+                </Card>
+              ))}
+            </div>
+          </ScrollReveal>
+          </div>
+      </Section>
+
+      <Section tone="gray">
+        <div className="container">
+          <ScrollReveal className="max-w-5xl">
+            <h2 className="text-2xl md:text-3xl font-semibold text-gray-900">{faqTitle}</h2>
+            <div className="mt-6 grid gap-6 md:grid-cols-2">
+              {faqBlocks.map((b) => (
+                <Card key={b}>
+                  <p className="whitespace-pre-line prose-block">{b}</p>
+                </Card>
+              ))}
+            </div>
+          </ScrollReveal>
+        </div>
+      </Section>
+
+      <Section>
+        <div className="container">
+          <ScrollReveal className="max-w-5xl text-center">
+            <h2 className="text-3xl font-semibold text-gray-900">{ctaTitle}</h2>
+            <Card className="mt-6 text-left">
+              <p className="whitespace-pre-line prose-block">{ctaBlock}</p>
+            </Card>
+            <div className="mt-8 flex justify-center">
+              <Button className="text-base md:text-lg" href="/contact-us">
+                Get Free Strategy Call
+              </Button>
+            </div>
+          </ScrollReveal>
+          </div>
+      </Section>
+
         <Footer />
       </div>
-    </>
   )
 }
-
-export default ServicesPage

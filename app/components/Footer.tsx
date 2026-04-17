@@ -67,13 +67,7 @@ const Footer = () => {
   ];
 
   return (
-    <footer className="relative bg-neutral-900 pt-20 pb-6 text-gray-300">
-      <div className="absolute inset-0 z-0 overflow-hidden">
-        <div className="stars opacity-80" />
-        <div className="stars2 opacity-60" />
-        <div className="stars3 opacity-40" />
-        <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent" />
-      </div>
+    <footer className="bg-neutral-900 pt-20 pb-6 text-gray-300">
 
       <motion.div
         ref={ref}
@@ -89,7 +83,7 @@ const Footer = () => {
             animate={inView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.8, delay: 0.2 }}
           >
-            <h2 className="text-2xl font-bold gradient-text mb-6">Leadzoro</h2>
+            <h2 className="text-2xl font-bold text-white mb-6">Leadzoro</h2>
             <p className="text-gray-300 mb-6">
               Your trusted digital growth partner. We transform clicks into customers and visitors into brand advocates.
             </p>
@@ -98,9 +92,7 @@ const Footer = () => {
                 <motion.a
                   key={social.label}
                   href={social.href}
-                  className="text-gray-400 hover:text-primary-300 transition-colors duration-300"
-                  whileHover={{ scale: 1.1 }}
-                  whileTap={{ scale: 0.95 }}
+                  className="text-gray-400 hover:text-white transition-colors duration-200"
                   initial={{ opacity: 0, y: 20 }}
                   animate={inView ? { opacity: 1, y: 0 } : {}}
                   transition={{ duration: 0.8, delay: 0.3 + index * 0.1 }}
@@ -130,7 +122,7 @@ const Footer = () => {
                   >
                     <Link
                       href={link.href}
-                      className="text-gray-300 hover:text-primary-300 transition-colors duration-300"
+                      className="text-gray-300 hover:text-white transition-colors duration-200"
                     >
                       {link.name}
                     </Link>
@@ -152,7 +144,7 @@ const Footer = () => {
             <motion.a
               key={info.text}
               href={info.href}
-              className="flex items-center justify-center md:justify-start gap-2 text-gray-300 hover:text-primary-300 transition-colors duration-300"
+              className="flex items-center justify-center md:justify-start gap-2 text-gray-300 hover:text-white transition-colors duration-200"
               initial={{ opacity: 0, y: 20 }}
               animate={inView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.8, delay: 0.7 + index * 0.1 }}

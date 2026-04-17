@@ -24,6 +24,11 @@ import {
   FaChevronDown
 } from 'react-icons/fa'
 
+import Section from './ui/Section'
+import Card from './ui/Card'
+import Button from './ui/Button'
+import ScrollReveal from './ui/ScrollReveal'
+
 // Import images
 import DiscoverImg from '../../public/assets/Discover.png'
 import StratergizeImg from '../../public/assets/Stratergize.png'
@@ -112,6 +117,15 @@ const services = [
   }
 ]
 
+const serviceIconGradients = [
+  'from-blue-600 to-cyan-500',
+  'from-purple-600 to-pink-500',
+  'from-green-600 to-emerald-500',
+  'from-indigo-600 to-blue-500',
+  'from-rose-600 to-orange-500',
+  'from-teal-600 to-cyan-500',
+]
+
 const WhyChooseUs = () => {
   const features = [
     '100% Transparent Reporting',
@@ -122,43 +136,34 @@ const WhyChooseUs = () => {
   ];
 
   return (
-    <div className="mt-32 relative">
-      {/* Decorative background elements */}
-      <div className="absolute inset-0 -z-10">
-        <div className="absolute top-0 right-0 w-96 h-96 bg-primary-200/20 rounded-full filter blur-3xl" />
-        <div className="absolute bottom-0 left-0 w-96 h-96 bg-secondary-200/20 rounded-full filter blur-3xl" />
+    <Section className="mt-20 bg-gradient-to-b from-white to-gray-50">
+      <div className="container">
+        <ScrollReveal className="max-w-4xl mx-auto text-center">
+          <div className="inline-flex items-center justify-center w-12 h-12 rounded-xl bg-gradient-to-r from-blue-600 to-indigo-600 text-white mx-auto">
+            <FaLightbulb className="w-6 h-6" />
+          </div>
+          
+          <h2 className="mt-6 text-3xl md:text-4xl font-semibold text-gray-900">Why Choose Leadzoro?</h2>
+
+          <p className="mt-4 text-xl text-gray-700">
+            Because we don't just run campaigns — we drive business outcomes.
+          </p>
+
+          <div className="mt-10 grid grid-cols-1 md:grid-cols-2 gap-4 text-left">
+            {features.map((feature) => (
+              <Card key={feature} className="flex items-center gap-3">
+                <FaCheckCircle className="text-blue-600 flex-shrink-0 w-5 h-5" />
+                <span className="text-gray-900 font-medium">{feature}</span>
+              </Card>
+            ))}
+          </div>
+
+          <p className="mt-10 text-xl text-gray-700 font-medium">
+            We're not another agency — we're your growth partner.
+          </p>
+        </ScrollReveal>
       </div>
-
-      <div className="max-w-4xl mx-auto text-center px-4">
-        <div className="inline-block text-4xl mb-6 text-primary-600">
-          <FaLightbulb />
-        </div>
-        
-        <h2 className="text-3xl md:text-4xl font-bold mb-6">
-          <span className="gradient-text">Why Choose Leadzoro?</span>
-        </h2>
-
-        <p className="text-xl text-gray-700 mb-12">
-          Because we don't just run campaigns — we drive business outcomes.
-        </p>
-
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          {features.map((feature, index) => (
-            <div
-              key={feature}
-              className="flex items-center p-4 rounded-lg bg-gray-50 border border-gray-200 hover:border-primary-500/50 hover:bg-gray-100 transition-all duration-300 shadow-sm"
-            >
-              <FaCheckCircle className="text-primary-600 flex-shrink-0 w-6 h-6 mr-4" />
-              <span className="text-gray-800 font-medium">{feature}</span>
-            </div>
-          ))}
-        </div>
-
-        <p className="mt-12 text-xl text-gray-700 font-medium">
-          We're not another agency — we're your growth partner.
-        </p>
-      </div>
-    </div>
+    </Section>
   );
 };
 
@@ -179,82 +184,32 @@ const ProcessStep = ({
   icon: React.ElementType;
   color: string;
 }) => {  
-  const isEven = index % 2 === 0;
-
   return (
-    <div className="relative">
-      {/* Timeline Node */}
-      <div className="absolute left-1/2 transform -translate-x-1/2 w-16 h-16 bg-white rounded-full border-4 border-gray-200 flex items-center justify-center z-10 hidden lg:flex">
-        <div className={`w-10 h-10 bg-gradient-to-br ${color} rounded-full flex items-center justify-center`}>
-          <Icon className="w-5 h-5 text-white" />
+    <Card variant="glass" className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
+      <div>
+        <div className="flex items-center gap-3">
+          <div className="w-10 h-10 rounded-xl bg-gradient-to-r from-blue-600 to-indigo-600 text-white flex items-center justify-center">
+            <Icon className="w-5 h-5" />
+          </div>
+          <div>
+            <div className="text-xs font-semibold text-gray-500 uppercase tracking-wider">Step {step}</div>
+            <h3 className="text-2xl font-semibold text-gray-900">{title}</h3>
+          </div>
         </div>
+        <p className="mt-4 text-gray-700 leading-relaxed">{description}</p>
       </div>
 
-      <div className={`flex items-center gap-6 lg:gap-12 ${isEven ? 'lg:flex-row' : 'lg:flex-row-reverse'} flex-col lg:px-8`}>
-        {/* Content Side */}
-        <div className={`flex-1 ${isEven ? 'lg:pr-16' : 'lg:pl-16'} w-full`}>
-          <div className="card-modern glass-card hover:shadow-2xl transition-all duration-500 group">
-            {/* Colored background layer per step */}
-            <div className={`absolute inset-0 z-0 rounded-3xl bg-gradient-to-br ${color} opacity-20`} />
-            <div className="relative z-10">
-            {/* Step Header */}
-            <div className="flex flex-col sm:flex-row sm:items-center gap-4 mb-6">
-              <div className={`w-12 h-12 sm:w-14 sm:h-14 bg-gradient-to-br ${color} rounded-xl lg:rounded-full flex items-center justify-center pulse-glow group-hover:scale-110 transition-transform duration-300 mx-auto sm:mx-0`}>
-                <Icon className="w-5 h-5 sm:w-6 sm:h-6 text-white" />
-              </div>
-              <div className="text-center sm:text-left">
-                <span className="text-xs sm:text-sm font-semibold text-gray-500 uppercase tracking-wider shimmer">Step {step}</span>
-                <h3 className="text-xl sm:text-2xl lg:text-3xl font-bold text-gray-900 group-hover:text-indigo-700 transition-colors duration-300">
-                  {title}
-                </h3>
-              </div>
-            </div>
-            
-            {/* Description */}
-            <p className="text-gray-600 text-sm sm:text-base lg:text-lg leading-relaxed text-center sm:text-left">
-              {description}
-            </p>
-            
-            {/* Progress Indicator */}
-            <div className="mt-6 flex items-center gap-2">
-              {Array.from({ length: 5 }, (_, i) => (
-                <div 
-                  key={i}
-                  className={`h-1.5 sm:h-2 rounded-full transition-all duration-300 ${
-                    i < Number(step) ? `bg-gradient-to-r ${color}` : 'bg-gray-200'
-                  } ${i < Number(step) ? 'w-6 sm:w-8' : 'w-1.5 sm:w-2'}`}
-                />
-              ))}
-            </div>
-            </div>
-          </div>
-        </div>
-        
-        {/* Image Side */}
-        <div className="flex-1 w-full">
-          <div className="relative group overflow-hidden rounded-2xl lg:rounded-3xl h-[250px] sm:h-[300px] lg:h-[350px] w-full shadow-2xl">
-            <Image 
-              src={image}
-              alt={`Step ${step}: ${title}`}
-              fill
-              sizes="(max-width: 640px) 100vw, (max-width: 1024px) 100vw, 50vw"
-              quality={90}
-              priority={index === 0}
-              className="rounded-2xl lg:rounded-3xl object-cover group-hover:scale-110 transition-transform duration-700"
-            />
-            <div className={`absolute inset-0 bg-gradient-to-br ${color} opacity-20 group-hover:opacity-30 transition-opacity duration-300`} />
-            <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-            
-            {/* Floating Step Number */}
-            <div className="absolute top-4 left-4 lg:top-6 lg:left-6 w-10 h-10 lg:w-12 lg:h-12 bg-white/90 backdrop-blur-sm rounded-xl lg:rounded-2xl flex items-center justify-center">
-              <span className={`text-lg lg:text-xl font-bold bg-gradient-to-br ${color} bg-clip-text text-transparent`}>
-                {step}
-              </span>
-            </div>
-          </div>
-        </div>
+      <div className="relative overflow-hidden rounded-xl border border-gray-200 bg-white aspect-[4/3]">
+        <Image
+          src={image}
+          alt={`Step ${step}: ${title}`}
+          fill
+          sizes="(max-width: 1024px) 100vw, 50vw"
+          className="object-cover"
+          priority={index === 0}
+        />
       </div>
-    </div>
+    </Card>
   );
 };
 
@@ -303,70 +258,42 @@ const ProcessSection = () => {
   ];
 
   return (
-    <div className="mt-32 relative">
-      {/* Enhanced background elements */}
-      <div className="absolute inset-0 -z-10">
-        <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-b from-gray-50 to-white" />
-        <div className="absolute top-1/4 right-10 w-80 h-80 bg-gradient-to-br from-blue-400/10 to-purple-400/10 rounded-full blur-3xl" />
-        <div className="absolute bottom-1/4 left-10 w-96 h-96 bg-gradient-to-br from-indigo-400/10 to-pink-400/10 rounded-full blur-3xl" />
-      </div>
-
-      <div className="max-w-7xl mx-auto px-4">
-        <div className="text-center mb-20">
-          <div className="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-br from-indigo-500 to-purple-600 rounded-2xl mb-6">
-            <FaChartLine className="w-8 h-8 text-white" />
+    <Section className="mt-20 bg-gradient-to-b from-gray-50 to-white">
+      <div className="container">
+        <ScrollReveal className="text-center max-w-4xl mx-auto">
+          <div className="inline-flex items-center justify-center w-12 h-12 rounded-xl bg-gradient-to-r from-blue-600 to-indigo-600 text-white mx-auto">
+            <FaChartLine className="w-6 h-6" />
           </div>
-          
-          <h2 className="text-5xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-gray-900 via-indigo-800 to-purple-800 bg-clip-text text-transparent">
+          <h2 className="mt-6 text-4xl md:text-5xl font-semibold text-gray-900">
             Our 5-Step Process to Digital Domination
           </h2>
-          <p className="text-xl text-gray-600 max-w-4xl mx-auto leading-relaxed">
+          <p className="mt-4 text-xl text-gray-700 leading-relaxed">
             A proven methodology that transforms your digital presence into a <span className="font-semibold text-gray-800">revenue-generating machine</span>.
           </p>
-        </div>
+        </ScrollReveal>
 
-        {/* Modern Timeline Layout */}
-        <div className="relative">
-          {/* Central Timeline Line */}
-          <div className="absolute left-1/2 transform -translate-x-1/2 w-1 h-full bg-gradient-to-b from-blue-200 via-purple-200 to-pink-200 hidden lg:block" />
-          
-          <div className="space-y-16 lg:space-y-24">
-            {steps.map((step, index) => (
-              <ProcessStep 
-                key={step.step}
-                {...step}
-                index={index}
-              />
-            ))}
-          </div>
+        <div className="mt-12 space-y-8">
+          {steps.map((step, index) => (
+            <ScrollReveal key={step.step}>
+              <div className="bg-white rounded-2xl p-3 shadow-sm">
+                <ProcessStep {...step} index={index} />
+              </div>
+            </ScrollReveal>
+          ))}
         </div>
       </div>
-    </div>
+    </Section>
   );
 };
 
-const IndustryCard = ({ 
-  icon: Icon, 
-  title,
-  bgGradient,
-  iconGradient
-}: { 
-  icon: React.ElementType;
-  title: string;
-  bgGradient: string;
-  iconGradient: string;
-}) => (
-  <div className="relative overflow-hidden rounded-xl p-6 transition-all duration-300 border border-gray-200 hover:border-primary-500/50 shadow-lg hover:shadow-xl hover:scale-[1.02] bg-white/70 backdrop-blur-sm">
-    {/* Colored gradient background layer */}
-    <div className={`absolute inset-0 rounded-xl bg-gradient-to-br ${bgGradient} opacity-80`} />
-    <div className="relative z-10 flex flex-col items-center text-center space-y-3">
-      <div className={`w-12 h-12 rounded-xl bg-gradient-to-br ${iconGradient} text-white flex items-center justify-center`}>
-        <Icon />
-      </div>
-      <h3 className="text-xl font-semibold text-gray-900">{title}</h3>
+const IndustryCard = ({ icon: Icon, title }: { icon: React.ElementType; title: string }) => (
+  <Card className="flex flex-col items-center text-center gap-3">
+    <div className="w-12 h-12 rounded-xl bg-gradient-to-r from-blue-600 to-indigo-600 text-white flex items-center justify-center">
+      <Icon className="w-6 h-6" />
     </div>
-  </div>
-);
+    <h3 className="text-xl font-semibold text-gray-900">{title}</h3>
+  </Card>
+)
 
 const WhoWeWorkWith = () => {
   const industries = [
@@ -379,58 +306,28 @@ const WhoWeWorkWith = () => {
     { icon: FaTools, title: "Local Service Providers" }
   ];
 
-  const industryBgGradients = [
-    'from-sky-400/15 to-blue-600/10',
-    'from-amber-400/15 to-orange-600/10',
-    'from-indigo-400/15 to-purple-600/10',
-    'from-emerald-400/15 to-teal-600/10',
-    'from-rose-400/15 to-pink-600/10',
-    'from-cyan-400/15 to-sky-600/10',
-    'from-violet-400/15 to-fuchsia-600/10'
-  ];
-  const industryIconGradients = [
-    'from-sky-500 to-blue-600',
-    'from-amber-500 to-orange-600',
-    'from-indigo-500 to-purple-600',
-    'from-emerald-500 to-teal-600',
-    'from-rose-500 to-pink-600',
-    'from-cyan-500 to-sky-600',
-    'from-violet-500 to-fuchsia-600'
-  ];
-
   return (
-    <div className="mt-32 relative">
-      {/* Decorative background elements */}
-      <div className="absolute inset-0 -z-10">
-        <div className="absolute top-0 left-1/4 w-96 h-96 bg-primary-100/30 rounded-full filter blur-3xl animate-float" />
-        <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-secondary-100/30 rounded-full filter blur-3xl animate-float" 
-             style={{ animationDelay: '-5s' }} />
-      </div>
+    <Section className="mt-20 bg-gradient-to-b from-white to-gray-50">
+      <div className="container">
+        <ScrollReveal className="text-center">
+          <h2 className="text-4xl md:text-5xl font-semibold text-gray-900">Who We Work With</h2>
+        </ScrollReveal>
 
-      <div className="max-w-7xl mx-auto px-4">
-        <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold mb-8">
-            <span className="gradient-text">Who We Work With</span>
-          </h2>
-        </div>
-
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
-          {industries.map((industry, index) => (
-            <IndustryCard
-              key={industry.title}
-              icon={industry.icon}
-              title={industry.title}
-              bgGradient={industryBgGradients[index % industryBgGradients.length]}
-              iconGradient={industryIconGradients[index % industryIconGradients.length]}
-            />
+        <div className="mt-10 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          {industries.map((industry) => (
+            <ScrollReveal key={industry.title}>
+              <IndustryCard icon={industry.icon} title={industry.title} />
+            </ScrollReveal>
           ))}
         </div>
 
-        <p className="text-xl text-gray-700 font-medium text-center max-w-3xl mx-auto">
-          Whether you're in Pune or anywhere across India, Leadzoro adapts digital growth strategies that fit your industry like a glove.
-        </p>
+        <ScrollReveal className="mt-10">
+          <p className="text-xl text-gray-700 font-medium text-center max-w-3xl mx-auto">
+            Whether you're in Pune or anywhere across India, Leadzoro adapts digital growth strategies that fit your industry like a glove.
+          </p>
+        </ScrollReveal>
       </div>
-    </div>
+    </Section>
   );
 };
 
@@ -498,182 +395,118 @@ const FAQSection = () => {
   };
 
   return (
-    <div className="mt-32 relative">
-      {/* Decorative background elements */}
-      <div className="absolute inset-0 -z-10">
-        <div className="absolute top-0 right-1/4 w-96 h-96 bg-purple-100/30 rounded-full filter blur-3xl" />
-        <div className="absolute bottom-0 left-1/4 w-96 h-96 bg-blue-100/30 rounded-full filter blur-3xl" />
-      </div>
+    <Section className="mt-20 bg-gradient-to-b from-gray-50 to-white">
+      <div className="container">
+        <ScrollReveal className="text-center">
+          <h2 className="text-4xl md:text-5xl font-semibold text-gray-900">Frequently Asked Questions</h2>
+        </ScrollReveal>
 
-      <div className="max-w-4xl mx-auto px-4">
-        <div className="text-center mb-16">
-          
-          <h2 className="text-4xl md:text-5xl font-bold mb-8">
-            <span className="gradient-text">Frequently Asked Questions</span>
-          </h2>
-        </div>
-
-        <div className="space-y-4">
+        <div className="mt-10 max-w-4xl mx-auto space-y-4">
           {faqs.map((faq, index) => (
-            <FAQItem
-              key={index}
-              question={faq.question}
-              answer={faq.answer}
-              isOpen={openIndex === index} 
-              onToggle={() => toggleFAQ(index)}
-            />
+            <ScrollReveal key={index}>
+              <div className="bg-white rounded-2xl p-2 shadow-sm">
+                <FAQItem
+                  question={faq.question}
+                  answer={faq.answer}
+                  isOpen={openIndex === index} 
+                  onToggle={() => toggleFAQ(index)}
+                />
+              </div>
+            </ScrollReveal>
           ))}
         </div>
       </div>
-    </div>
+    </Section>
   );
 };
 
 const CTASection = () => {
 
   return (
-    <div className="mt-32 relative">
-      {/* Decorative background elements */}
-      <div className="absolute inset-0 -z-10">
-        <div className="absolute inset-0 bg-gradient-to-r from-primary-500/20 via-secondary-500/20 to-primary-500/20 blur-3xl opacity-50" />
-      </div>
+    <Section className="mt-20 bg-blue-900">
+      <div className="container">
+        <ScrollReveal className="max-w-4xl mx-auto">
+          <div className="text-center">
+            <h2 className="text-4xl font-bold text-white">
+              Ready to Grow Your Business?
+            </h2>
 
-      <div className="max-w-4xl mx-auto px-4 py-16 rounded-3xl border border-gray-200 bg-gray-50 backdrop-blur-sm shadow-lg">
-        <div className="text-center space-y-8">
-          <h2 className="text-4xl md:text-5xl font-bold">
-            <span className="gradient-text">Ready to Take Your Brand to the Next Level?</span>
-          </h2>
-
-          <p className="text-xl text-gray-700 font-medium">
-            Let's talk growth. Let's talk results. Let's talk Leadzoro.
-          </p>
-
-          <div className="flex flex-col items-center space-y-6">
-            <p className="text-lg text-gray-700 font-medium flex items-center gap-2">
-              Schedule your free strategy session now and discover why we're the best marketing agency in India trusted by 50+ fast-growing brands.
+            <p className="mt-4 text-white/80">
+              Let's scale your brand with proven strategies.
             </p>
 
-            <button className="group relative px-8 py-4 overflow-hidden rounded-full bg-gradient-to-r from-primary-500 to-secondary-500 text-white font-semibold text-lg shadow-2xl shadow-primary-500/20 hover:shadow-primary-500/40 transition-all duration-300 hover:scale-[1.02]">
-              <span className="relative z-10">Click Here to Skyrocket Your Growth with Leadzoro</span>
-              <div className="absolute inset-0 bg-gradient-to-r from-secondary-500 to-primary-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-              <div className="absolute inset-0 bg-gradient-to-r from-primary-500/50 to-secondary-500/50 blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-            </button>
+            <Button
+              className="mt-6 bg-yellow-400 text-black hover:bg-yellow-300 rounded-full font-semibold shadow-lg"
+              href="/contact-us"
+            >
+              Get Free Consultation
+            </Button>
           </div>
-        </div>
+        </ScrollReveal>
       </div>
-    </div>
+    </Section>
   );
 };
 
 const Services = () => {
-  // Per-card gradients for backgrounds and icons
-  const cardGradients = [
-    'from-sky-400/20 to-blue-600/10',
-    'from-amber-400/20 to-orange-600/10',
-    'from-emerald-400/20 to-teal-600/10',
-    'from-violet-400/20 to-fuchsia-600/10',
-    'from-rose-400/20 to-pink-600/10',
-    'from-indigo-400/20 to-purple-600/10'
-  ];
-  const iconGradients = [
-    'from-sky-500 to-blue-600',
-    'from-amber-500 to-orange-600',
-    'from-emerald-500 to-teal-600',
-    'from-violet-500 to-fuchsia-600',
-    'from-rose-500 to-pink-600',
-    'from-indigo-500 to-purple-600'
-  ];
-
   return (
-    <section id="services" className="py-24 px-4 relative overflow-hidden">
-      {/* Enhanced Background Elements */}
-      <div className="absolute inset-0 -z-10">
-        <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50" />
-        <div className="absolute top-20 right-20 w-72 h-72 bg-gradient-to-br from-blue-400/20 to-purple-400/20 rounded-full blur-3xl" />
-        <div className="absolute bottom-20 left-20 w-96 h-96 bg-gradient-to-br from-indigo-400/15 to-pink-400/15 rounded-full blur-3xl" />
-      </div>
+    <div>
+      <Section className="bg-gradient-to-b from-white to-gray-50">
+        <div className="container">
+          <ScrollReveal className="text-center max-w-4xl mx-auto">
+            <div className="inline-flex items-center justify-center w-12 h-12 rounded-xl bg-gradient-to-r from-blue-600 to-indigo-600 text-white mx-auto">
+              <FaRocket className="w-6 h-6" />
+            </div>
+            <h2 className="mt-6 text-5xl md:text-6xl font-semibold text-gray-900">
+              Our Core Services
+            </h2>
+            <p className="mt-4 text-xl text-gray-700 leading-relaxed">
+              We don't just market — we create <span className="font-semibold text-gray-800">measurable success</span> with our comprehensive digital solutions.
+            </p>
+          </ScrollReveal>
 
-      <div className="max-w-7xl mx-auto">
-        <div className="text-center mb-20">
-          <div className="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-br from-blue-500 to-purple-600 rounded-2xl mb-6">
-            <FaRocket className="w-8 h-8 text-white" />
+          <div className="mt-12 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            {services.map((service, index) => (
+              <ScrollReveal key={service.title}>
+                <Link href={service.href} className="block">
+                  <Card className="h-full">
+                    <div className="flex items-start gap-4">
+                      <div className={`flex items-center justify-center w-12 h-12 rounded-xl bg-gradient-to-r ${serviceIconGradients[index % serviceIconGradients.length]} text-white flex-shrink-0 shadow-lg`}>
+                        <div className="w-6 h-6">{service.icon}</div>
+                      </div>
+                      <div>
+                        <h3 className="text-xl font-semibold text-gray-900">{service.title}</h3>
+                        <p className="mt-2 text-gray-700 leading-relaxed">{service.description}</p>
+                      </div>
+                    </div>
+
+                    <ul className="mt-6 space-y-2">
+                      {service.features.map((feature, i) => (
+                        <li key={i} className="flex items-start gap-2 text-gray-700 font-medium">
+                          <FaCheckCircle className="w-4 h-4 text-blue-600 mt-0.5 flex-shrink-0" />
+                          <span className="text-sm sm:text-base">{feature}</span>
+                        </li>
+                      ))}
+                    </ul>
+
+                    <div className="mt-6 flex items-center justify-between">
+                      <span className="text-blue-600 font-semibold">Learn More</span>
+                      <span className="text-blue-600 font-semibold">→</span>
+                    </div>
+                  </Card>
+                </Link>
+              </ScrollReveal>
+            ))}
           </div>
-          <h2 className="text-5xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-gray-900 via-blue-800 to-purple-800 bg-clip-text text-transparent">
-            Our Core Services
-          </h2>
-          <p className="text-xl text-gray-600 max-w-4xl mx-auto leading-relaxed">
-            We don't just market — we create <span className="font-semibold text-gray-800">measurable success</span> with our comprehensive digital solutions.
-          </p>
         </div>
+      </Section>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
-          {services.map((service, index) => (
-            <Link key={service.title} href={service.href}>
-              <div className={`group card-modern bg-white/60 ${index % 2 === 0 ? 'float-animation' : 'float-animation-delayed'} cursor-pointer`}>
-                {/* Colored gradient background layer per card */}
-                <div className={`absolute inset-0 rounded-3xl bg-gradient-to-br ${cardGradients[index % cardGradients.length]} opacity-80`} />
-                {/* Glassmorphism overlay on hover */}
-                <div className="absolute inset-0 glass-card opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                
-                {/* Icon and Title */}
-                <div className="relative z-10">
-                  <div className="flex flex-col sm:flex-row sm:items-center mb-6">
-                    <div className={`flex items-center justify-center w-14 h-14 bg-gradient-to-br ${iconGradients[index % iconGradients.length]} rounded-2xl text-white group-hover:scale-110 transition-transform duration-300 pulse-glow mb-4 sm:mb-0`}>
-                      {service.icon}
-                    </div>
-                    <h3 className="sm:ml-4 text-xl sm:text-2xl font-bold text-gray-900 group-hover:text-blue-700 transition-colors duration-300 text-center sm:text-left">
-                      {service.title}
-                    </h3>
-                  </div>
-                  
-                  {/* Description */}
-                  <p className="text-gray-600 mb-6 sm:mb-8 leading-relaxed text-base sm:text-lg">
-                    {service.description}
-                  </p>
-                  
-                  {/* Features */}
-                  <ul className="space-y-2 sm:space-y-3 mb-6 sm:mb-8">
-                    {service.features.map((feature, i) => (
-                      <li key={i} className="flex items-start text-gray-700 font-medium">
-                        <div className="flex items-center justify-center w-4 h-4 sm:w-5 sm:h-5 bg-gradient-to-br from-green-400 to-blue-500 rounded-full mr-3 flex-shrink-0 mt-0.5">
-                          <FaCheckCircle className="w-2 h-2 sm:w-3 sm:h-3 text-white" />
-                        </div>
-                        <span className="text-sm sm:text-base">{feature}</span>
-                      </li>
-                    ))}
-                  </ul>
-                  
-                  {/* CTA */}
-                  <div className="flex items-center justify-between">
-                    <span className="text-blue-600 font-semibold group-hover:text-blue-700 transition-colors duration-300 shimmer text-sm sm:text-base">
-                      Learn More
-                    </span>
-                    <div className="w-7 h-7 sm:w-8 sm:h-8 bg-blue-100 rounded-full flex items-center justify-center group-hover:bg-blue-200 group-hover:scale-110 transition-all duration-300">
-                      <span className="text-blue-600 font-bold text-sm sm:text-base">→</span>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </Link>
-          ))}
-        </div>
-
-        {/* Why Choose Us Section */}
-        <WhyChooseUs />
-        
-        {/* Process Section */}
-        <ProcessSection />
-
-        {/* Who We Work With Section */}
-        <WhoWeWorkWith />
-
-        {/* FAQ Section */}
-        <FAQSection />
-
-        {/* CTA Section */}
-        <CTASection />
-      </div>
-    </section>
+      <WhyChooseUs />
+      <ProcessSection />
+      <WhoWeWorkWith />
+      <FAQSection />
+      <CTASection />
+    </div>
   )
 }
 

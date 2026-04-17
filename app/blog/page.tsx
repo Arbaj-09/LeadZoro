@@ -63,7 +63,7 @@ const BlogComingSoon = () => {
 
             {/* Title */}
             <h1 className="text-4xl md:text-6xl font-bold mb-6 text-slate-900">
-              <span className="gradient-text">Blog</span>
+              <span className="text-slate-900">Blog</span>
               <br />
               <span className="text-slate-900">Coming Soon</span>
             </h1>
