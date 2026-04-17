@@ -7,7 +7,7 @@ import HeroBg from '../../public/assets/og-home.png'
 
 const Hero = () => {
   return (
-    <section className="relative min-h-screen flex items-center justify-center text-center overflow-hidden pt-28 pb-20">
+    <section className="relative min-h-[100svh] flex items-center justify-center text-center overflow-hidden pt-24 md:pt-28 pb-12 md:pb-20 bg-[#dbe7fb]">
       <div className="absolute inset-0 z-0">
         <Image
           src={HeroBg}
@@ -15,30 +15,13 @@ const Hero = () => {
           fill
           priority
           sizes="100vw"
-          className="object-cover object-[center_14%]"
+          className="object-contain sm:object-cover object-[center_28%] sm:object-[center_20%] md:object-[center_16%] lg:object-[center_50%] xl:object-[center_56%]"
         />
-        <div className="absolute inset-0 bg-gradient-to-b from-black/10 via-blue-900/40 to-blue-900/68" />
+        <div className="absolute inset-0 bg-gradient-to-b from-black/0 via-blue-900/25 to-blue-900/55" />
       </div>
 
-      <div className="relative z-10 container">
-        <div className="mt-70 md:mt-80 mx-auto max-w-6xl grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
-          <div className="text-center backdrop-blur-md bg-white/10 border border-white/25 rounded-xl p-5 md:p-6 shadow-lg hover:scale-105 transition">
-            <h3 className="text-4xl md:text-5xl font-bold text-yellow-400">50+</h3>
-            <p className="text-white/80 text-sm md:text-base mt-1">Brands Trust Us</p>
-          </div>
-          <div className="text-center backdrop-blur-md bg-white/10 border border-white/25 rounded-xl p-5 md:p-6 shadow-lg hover:scale-105 transition">
-            <h3 className="text-4xl md:text-5xl font-bold text-yellow-400">100%</h3>
-            <p className="text-white/80 text-sm md:text-base mt-1">Transparent</p>
-          </div>
-          <div className="text-center backdrop-blur-md bg-white/10 border border-white/25 rounded-xl p-5 md:p-6 shadow-lg hover:scale-105 transition">
-            <h3 className="text-4xl md:text-5xl font-bold text-yellow-400">100+</h3>
-            <p className="text-white/80 text-sm md:text-base mt-1">Strategies</p>
-          </div>
-          <div className="text-center backdrop-blur-md bg-white/10 border border-white/25 rounded-xl p-5 md:p-6 shadow-lg hover:scale-105 transition">
-            <h3 className="text-4xl md:text-5xl font-bold text-yellow-400">24/7</h3>
-            <p className="text-white/80 text-sm md:text-base mt-1">Support</p>
-          </div>
-        </div>
+      <div className="relative z-10 container w-full">
+        <div className="pt-20 sm:pt-24 md:pt-28 lg:pt-32" />
 
         <div className="mt-8 flex justify-center gap-3 flex-wrap">
           <Link
@@ -53,6 +36,25 @@ const Hero = () => {
           >
             Learn More
           </Link>
+        </div>
+
+        <div className="mt-14 md:mt-20 mx-auto max-w-6xl grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 md:gap-6">
+          <div className="text-center backdrop-blur-md bg-white/10 border border-white/25 rounded-xl p-4 sm:p-5 md:p-6 shadow-lg transition">
+            <h3 className="text-3xl sm:text-4xl md:text-5xl font-bold text-yellow-400">50+</h3>
+            <p className="text-white/80 text-xs sm:text-sm md:text-base mt-1">Brands Trust Us</p>
+          </div>
+          <div className="text-center backdrop-blur-md bg-white/10 border border-white/25 rounded-xl p-4 sm:p-5 md:p-6 shadow-lg transition">
+            <h3 className="text-3xl sm:text-4xl md:text-5xl font-bold text-yellow-400">100%</h3>
+            <p className="text-white/80 text-xs sm:text-sm md:text-base mt-1">Transparent</p>
+          </div>
+          <div className="text-center backdrop-blur-md bg-white/10 border border-white/25 rounded-xl p-4 sm:p-5 md:p-6 shadow-lg transition">
+            <h3 className="text-3xl sm:text-4xl md:text-5xl font-bold text-yellow-400">100+</h3>
+            <p className="text-white/80 text-xs sm:text-sm md:text-base mt-1">Strategies</p>
+          </div>
+          <div className="text-center backdrop-blur-md bg-white/10 border border-white/25 rounded-xl p-4 sm:p-5 md:p-6 shadow-lg transition">
+            <h3 className="text-3xl sm:text-4xl md:text-5xl font-bold text-yellow-400">24/7</h3>
+            <p className="text-white/80 text-xs sm:text-sm md:text-base mt-1">Support</p>
+          </div>
         </div>
       </div>
     </section>
