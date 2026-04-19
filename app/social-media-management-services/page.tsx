@@ -9,6 +9,12 @@ import { FaCalendarAlt } from 'react-icons/fa';
 import Footer from '../components/Footer'
 import Navbar from '../components/Navbar'
 import r1 from '../../public/assets/r1.png'
+import r2 from '../../public/assets/r2.png'
+import r3 from '../../public/assets/r3.png'
+import r4 from '../../public/assets/r4.png'
+import r5 from '../../public/assets/r5.png'
+import r6 from '../../public/assets/r6.png'
+import r7 from '../../public/assets/r7.png'
 
 const fadeIn: Variants = {
   initial: { opacity: 0, y: 20 },
@@ -34,7 +40,7 @@ const ServiceCard = ({ title, content, icon: Icon, delay = 0 }: ServiceCardProps
   // ... existing code ...
 };
 
-const Services4Page = () => {
+const LegacyWebsiteDevelopmentPage = () => {
   return (
     <div className="min-h-screen bg-gradient-to-b from-white to-gray-50 text-gray-900">
       <Navbar />
@@ -1746,6 +1752,150 @@ const Services4Page = () => {
             </div>
           </motion.div>
         </motion.div>
+      </section>
+
+      <Footer />
+    </div>
+  );
+};
+
+const Services4Page = () => {
+  const managementCards = [
+    {
+      title: 'Content Calendar and Posting',
+      description: 'Weekly and monthly posting plans aligned with your business goals.',
+      image: r2
+    },
+    {
+      title: 'Reels and Creatives Design',
+      description: 'High-engagement creatives, reels, and brand visuals for better reach.',
+      image: r3
+    },
+    {
+      title: 'Brand Page Optimization',
+      description: 'Bio, highlights, profile setup, and page structure optimized for conversion.',
+      image: r4
+    },
+    {
+      title: 'Hashtag and Trend Strategy',
+      description: 'Platform-specific hashtag and trend mapping to improve discoverability.',
+      image: r5
+    },
+    {
+      title: 'Audience Engagement',
+      description: 'Comment, DM, and community handling with consistent brand tone.',
+      image: r6
+    },
+    {
+      title: 'Monthly Performance Reporting',
+      description: 'Clear reports with insights, growth trends, and next action plan.',
+      image: r7
+    }
+  ];
+
+  const whyChooseCards = [
+    {
+      title: 'Platform-Specific Strategy',
+      description: 'Dedicated strategy for Instagram, Facebook, LinkedIn, and YouTube.',
+      image: r3
+    },
+    {
+      title: 'Consistent Brand Identity',
+      description: 'Same brand voice and visual consistency across all social platforms.',
+      image: r4
+    },
+    {
+      title: 'Lead-Focused Execution',
+      description: 'Content and campaigns designed to drive inquiries, not just likes.',
+      image: r5
+    },
+    {
+      title: 'Fast Support',
+      description: 'Quick communication, approval cycles, and transparent execution flow.',
+      image: r6
+    }
+  ];
+
+  return (
+    <div className="min-h-screen bg-white text-gray-900">
+      <Navbar />
+
+      <section className="pt-28 pb-16 bg-gradient-to-b from-blue-50 to-white">
+        <div className="container mx-auto px-4 max-w-6xl grid lg:grid-cols-2 gap-10 items-center">
+          <div>
+            <h1 className="text-4xl md:text-5xl font-bold text-gray-900">
+              Social Media Management Services in Pune & India
+            </h1>
+            <p className="mt-6 text-lg text-gray-700 leading-8 max-w-4xl">
+              Build a stronger brand presence with consistent, strategy-led social media management. We help businesses grow on Instagram, Facebook, LinkedIn, and YouTube through content planning, creative design, audience engagement, and performance optimization.
+            </p>
+            <a
+              href="/contact-us"
+              className="inline-block mt-8 bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-md font-semibold"
+            >
+              Talk to Our Experts
+            </a>
+          </div>
+
+          <div className="relative h-[360px] w-full rounded-2xl overflow-hidden shadow-xl border border-amber-300/60">
+            <Image src={r1} alt="Social media management hero visual" fill className="object-cover" priority />
+          </div>
+        </div>
+      </section>
+
+      <section className="py-20 bg-gray-50">
+        <div className="container mx-auto px-4 max-w-6xl">
+          <h2 className="text-3xl md:text-4xl font-bold text-gray-900">What We Manage</h2>
+          <div className="mt-10 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {managementCards.map((item) => (
+              <div
+                key={item.title}
+                className="bg-white rounded-[14px] overflow-hidden p-4 border-[1.5px] border-amber-300/60 shadow-[0_10px_24px_rgba(15,23,42,0.06)] hover:-translate-y-[5px] hover:shadow-[0_15px_40px_rgba(0,0,0,0.08),0_0_0_2px_rgba(255,193,7,0.4)] transition-all duration-300"
+              >
+                <div className="relative h-40 w-full rounded-lg overflow-hidden mb-4">
+                  <Image src={item.image} alt={item.title} fill className="object-cover" />
+                </div>
+                <h3 className="text-xl font-semibold text-gray-900">{item.title}</h3>
+                <p className="mt-2 text-gray-600">{item.description}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="py-20 bg-white">
+        <div className="container mx-auto px-4 max-w-6xl">
+          <h2 className="text-3xl md:text-4xl font-bold text-gray-900">Why Choose Leadzoro</h2>
+          <div className="mt-8 grid md:grid-cols-2 gap-6">
+            {whyChooseCards.map((point) => (
+              <div
+                key={point.title}
+                className="rounded-[14px] overflow-hidden p-4 bg-white border-[1.5px] border-amber-300/60 shadow-[0_10px_24px_rgba(15,23,42,0.06)] hover:-translate-y-[5px] hover:shadow-[0_15px_40px_rgba(0,0,0,0.08),0_0_0_2px_rgba(255,193,7,0.4)] transition-all duration-300"
+              >
+                <div className="relative h-36 w-full rounded-lg overflow-hidden mb-4">
+                  <Image src={point.image} alt={point.title} fill className="object-cover" />
+                </div>
+                <h3 className="text-xl font-semibold text-gray-900">{point.title}</h3>
+                <p className="mt-2 text-gray-700">{point.description}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="py-20 bg-blue-900 text-white text-center">
+        <div className="container mx-auto px-4 max-w-5xl">
+          <h2 className="text-3xl md:text-4xl font-bold">Ready to Grow on Social Media?</h2>
+          <p className="mt-4 text-white/80">
+            Get a custom social media plan designed for your business goals.
+          </p>
+          <a
+            href="/contact-us"
+            className="inline-block mt-6 bg-yellow-400 text-black px-6 py-3 rounded-md font-semibold hover:bg-yellow-300"
+          >
+            Get Free Consultation
+          </a>
+        </div>
       </section>
 
       <Footer />

@@ -60,7 +60,7 @@ const Navbar = () => {
   const navItems = [
     { name: 'Home', href: '/' },
     { name: 'About', href: '/about' },
-    { name: 'Services', href: '#', hasDropdown: true },
+    { name: 'Services', href: '/seo-services', hasDropdown: true },
     { name: 'Blogs', href: '/blog' },
     { name: 'Pricing', href: '/pricing' },
     { name: 'Contact', href: '/contact-us' }
@@ -116,8 +116,13 @@ const Navbar = () => {
                   >
                     <Link
                       href={item.href}
-                      className={`${isHome && !isScrolled ? 'text-white/90 hover:text-white drop-shadow-[0_1px_6px_rgba(0,0,0,0.75)]' : 'text-gray-700 hover:text-gray-900'} px-3 py-2 text-sm font-medium`}
-                      onClick={(e) => item.hasDropdown && e.preventDefault()}
+                      className={`nav-link ${
+                        isHome && !isScrolled
+                          ? 'text-white/90 hover:text-white drop-shadow-[0_1px_6px_rgba(0,0,0,0.75)]'
+                          : 'text-gray-700 hover:text-[#0B3C6F]'
+                      } px-3 py-2 text-sm font-medium transition-colors duration-200 ${
+                        pathname === item.href ? 'active' : ''
+                      }`}
                     >
                       {item.name}
                     </Link>

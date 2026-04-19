@@ -133,7 +133,7 @@ export default function SEOServicesPage() {
                 animate={isInView ? { opacity: 1, y: 0 } : {}}
                 transition={{ duration: 0.5, delay: 0.4 }}
               >
-                <Button className="btn-primary text-lg px-8 py-6">
+                <Button href="/contact-us" className="btn-primary text-lg px-8 py-6">
                   Get Started Today
                 </Button>
               </motion.div>
@@ -241,12 +241,12 @@ export default function SEOServicesPage() {
                     ].map((pillar, index) => (
                       <motion.div
                         key={pillar.title}
-                        className="p-6 rounded-xl bg-white shadow-lg border border-gray-200 hover:border-blue-300 transition-all duration-300"
+                        className="group relative rounded-[14px] bg-white p-6 border-[1.5px] border-amber-300/60 shadow-[0_10px_24px_rgba(15,23,42,0.06)] hover:-translate-y-[5px] hover:shadow-[0_15px_40px_rgba(0,0,0,0.08),0_0_0_2px_rgba(255,193,7,0.4)] transition-all duration-300"
                         initial={{ opacity: 0, y: 20 }}
                         animate={secondInView ? { opacity: 1, y: 0 } : {}}
                         transition={{ duration: 0.5, delay: 0.4 + index * 0.1 }}
                       >
-                        <h4 className="text-xl font-bold text-blue-600 mb-2">{pillar.title}</h4>
+                        <h4 className="text-xl font-bold text-blue-700 mb-2">{pillar.title}</h4>
                         <p className="text-gray-700 font-semibold">{pillar.description}</p>
                       </motion.div>
                     ))}
@@ -264,6 +264,176 @@ export default function SEOServicesPage() {
               </motion.div>
             </div>
           </motion.div>
+        </section>
+
+        {/* Client-style Process 01-04 */}
+        <section className="py-20 md:py-24 bg-blue-800 text-white">
+          <div className="max-w-6xl mx-auto px-4">
+            <h2 className="text-3xl md:text-4xl font-bold text-center mb-12">Our SEO Process</h2>
+            <div className="grid md:grid-cols-4 gap-6">
+              {[
+                {
+                  step: '01',
+                  title: 'Analysis & Research',
+                  description: 'We audit your current SEO performance, keyword gaps, and competitor landscape.'
+                },
+                {
+                  step: '02',
+                  title: 'Strategy Development',
+                  description: 'We create a tailored roadmap for on-page, off-page, and technical growth.'
+                },
+                {
+                  step: '03',
+                  title: 'Implementation',
+                  description: 'We execute optimizations across content, structure, links, and local SEO.'
+                },
+                {
+                  step: '04',
+                  title: 'Monitoring & Reporting',
+                  description: 'We track rankings, traffic, and lead metrics, then improve monthly.'
+                }
+              ].map((item) => (
+                <div key={item.step} className="p-6 border border-white/20 rounded-xl bg-blue-900/30 hover:scale-105 transition duration-300">
+                  <h3 className="text-5xl font-bold text-yellow-400 opacity-80">{item.step}</h3>
+                  <h4 className="mt-3 text-xl font-semibold">{item.title}</h4>
+                  <p className="text-sm mt-3 text-white/80">{item.description}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* Form section */}
+        <section className="py-20 md:py-24 bg-gray-100">
+          <div className="max-w-6xl mx-auto px-4 grid md:grid-cols-2 gap-10 items-center">
+            <div className="relative h-[420px] w-full rounded-2xl overflow-hidden shadow-lg">
+              <OptimizedImage
+                src={s9.src}
+                alt="SEO consultation form visual"
+                className="object-cover w-full h-full"
+              />
+            </div>
+
+            <form className="space-y-4 bg-white p-8 rounded-xl shadow-md border border-gray-200">
+              <h3 className="text-3xl md:text-4xl font-bold text-gray-900">Transform Your Online Presence</h3>
+              <p className="text-blue-700 font-semibold text-2xl">Get a Quote Now!</p>
+              <input className="w-full border border-gray-300 p-3 rounded focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Enter Name" />
+              <input className="w-full border border-gray-300 p-3 rounded focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Enter Phone No." />
+              <input className="w-full border border-gray-300 p-3 rounded focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Enter Email Address" />
+              <textarea className="w-full border border-gray-300 p-3 rounded focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="How can we help you?" rows={4} />
+
+              <Button href="/contact-us" className="bg-blue-600 hover:bg-blue-700 text-white p-3 w-full rounded-md">
+                Talk to our Experts
+              </Button>
+            </form>
+          </div>
+        </section>
+
+        {/* Industries grid */}
+        <section className="py-20 md:py-24 bg-white">
+          <div className="max-w-6xl mx-auto px-4">
+            <h2 className="text-3xl md:text-4xl font-bold text-center text-gray-900">Industries We Serve</h2>
+            <p className="text-center text-gray-600 mt-4 max-w-3xl mx-auto">
+              We support businesses across industries with structured, conversion-focused SEO solutions.
+            </p>
+            <div className="mt-10 grid grid-cols-2 md:grid-cols-4 lg:grid-cols-7 gap-6">
+              {[
+                'Education',
+                'Car Rental',
+                'Finance',
+                'E-commerce',
+                'Manufacturing',
+                'Healthcare',
+                'Supply Chain',
+                'Food & Beverage',
+                'Small Business',
+                'Sports & Fitness',
+                'Law',
+                'Tours & Travel',
+                'Startup',
+                'Technology'
+              ].map((industry) => (
+                <div key={industry} className="bg-white p-6 shadow-sm rounded-lg text-center border border-gray-200 hover:shadow-lg transition">
+                  <p className="text-sm font-semibold text-gray-800">{industry}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* SEO toolkit */}
+        <section className="py-20 md:py-24 bg-gray-50 text-center">
+          <div className="max-w-6xl mx-auto px-4">
+            <h2 className="text-3xl font-bold text-gray-900">Our SEO Toolkit</h2>
+            <p className="mt-4 text-gray-600 max-w-3xl mx-auto">
+              We use industry-standard SEO tools for data-backed strategy, technical audits, and performance tracking.
+            </p>
+
+            <div className="mt-10 grid grid-cols-2 md:grid-cols-5 gap-6">
+              {['Ahrefs', 'SEMRush', 'Moz', 'Google Search Console', 'Google Analytics', 'PageSpeed Insights', 'Screaming Frog', 'Searchmetrics', 'Sitebulb', 'Ubersuggest'].map((tool) => (
+                <div key={tool} className="bg-gray-100 p-6 rounded border border-gray-200 shadow-sm font-semibold text-gray-700 hover:shadow-lg transition">
+                  {tool}
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* Client-style Long Content Section */}
+        <section className="py-20 md:py-24 bg-white">
+          <div className="max-w-6xl mx-auto px-4">
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-900">
+              Why Choose Our SEO Services
+            </h2>
+            <p className="mt-6 text-gray-700 leading-8">
+              Choosing Leadzoro SEO services in Pune and across India helps your business build long-term visibility, generate qualified leads, and stay ahead of competitors in search results. Our team follows a strategic approach that combines on-page optimization, off-page authority building, local SEO, and technical SEO improvements to strengthen your complete online presence. We focus on business outcomes, not vanity metrics, by targeting high-intent keywords, improving user experience, and building content that satisfies both search engines and real customers. With consistent optimization and transparent reporting, we help you convert organic traffic into measurable growth.
+            </p>
+            <p className="mt-5 text-gray-700 leading-8">
+              From startups and local businesses to e-commerce and service brands, our SEO frameworks are tailored for your niche, location, and revenue goals. This is why businesses looking for dependable SEO services in Pune trust Leadzoro to deliver structured execution, regular performance tracking, and conversion-first search growth.
+            </p>
+          </div>
+        </section>
+
+        {/* Benefits: left content + right points */}
+        <section className="py-20 md:py-24 bg-gray-50">
+          <div className="max-w-6xl mx-auto px-4 grid md:grid-cols-2 gap-10">
+            <div className="text-gray-700 leading-8">
+              <p>
+                Our professional SEO team in Pune applies data-led keyword research, high-quality content optimization, and technical fixes that improve indexability and rankings. Every campaign is customized for your target audience, geography, and conversion goals so your SEO growth is sustainable and profitable.
+              </p>
+              <p className="mt-5">
+                We continuously monitor algorithm updates, track ranking trends, and refine your strategy with transparent monthly reporting. This ensures your website keeps growing in visibility, authority, and lead generation in a competitive market.
+              </p>
+            </div>
+
+            <div className="space-y-6">
+              {[
+                {
+                  icon: '📊',
+                  title: 'Page Ranking on Top of Google',
+                  description: 'Improve on-page performance and increase organic traffic with focused optimization.'
+                },
+                {
+                  icon: '🎯',
+                  title: 'Brand Visibility',
+                  description: 'Make your business discoverable for high-intent customers searching in your niche.'
+                },
+                {
+                  icon: '🚀',
+                  title: 'Lead Generation',
+                  description: 'Turn your website into a predictable source of quality leads and inquiries.'
+                }
+              ].map((item) => (
+                <div key={item.title} className="flex gap-4 bg-white rounded-xl p-5 border border-gray-200 shadow-sm">
+                  <div className="text-2xl text-blue-600">{item.icon}</div>
+                  <div>
+                    <h4 className="text-xl font-semibold text-gray-900">{item.title}</h4>
+                    <p className="text-gray-600 text-sm mt-1">{item.description}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
         </section>
 
         {/* Third Section - Indian Businesses */}
@@ -1135,7 +1305,7 @@ export default function SEOServicesPage() {
               <p className="text-xl text-gray-700 mb-8 font-semibold">
                 No confusing reports. No ghosting. Just results.
               </p>
-              <Button className="btn-primary text-lg px-8 py-6">
+              <Button href="/contact-us" className="btn-primary text-lg px-8 py-6">
                 Start Your SEO Journey Today
               </Button>
             </motion.div>
@@ -1268,7 +1438,7 @@ export default function SEOServicesPage() {
               <p className="text-xl text-gray-700 mb-8 font-semibold">
                 Ready to see these kinds of results for your business?
               </p>
-              <Button className="btn-primary text-lg px-8 py-6">
+              <Button href="/contact-us" className="btn-primary text-lg px-8 py-6">
                 Start Your SEO Journey Today
               </Button>
             </motion.div>
@@ -1396,7 +1566,7 @@ export default function SEOServicesPage() {
               <p className="text-xl text-gray-700 mb-8 font-semibold">
                 No matter your niche — we help you rank, scale, and grow.
               </p>
-              <Button className="btn-primary text-lg px-8 py-6">
+              <Button href="/contact-us" className="btn-primary text-lg px-8 py-6">
                 Start Your SEO Journey Today
               </Button>
             </motion.div>
@@ -1531,7 +1701,7 @@ export default function SEOServicesPage() {
               <p className="text-xl text-gray-700 mb-8 font-semibold">
                 Still have questions? We're here to help!
               </p>
-              <Button className="btn-primary text-lg px-8 py-6">
+              <Button href="/contact-us" className="btn-primary text-lg px-8 py-6">
                 Contact Us Today
               </Button>
             </motion.div>
@@ -1645,13 +1815,30 @@ export default function SEOServicesPage() {
                     </p>
                   </div>
 
-                  <Button className="w-full btn-primary text-lg py-6">
+                  <Button href="/contact-us" className="w-full btn-primary text-lg py-6">
                     Get Your Free SEO Audit
                   </Button>
                 </div>
               </motion.div>
             </div>
           </motion.div>
+        </section>
+
+        <section className="py-20 md:py-24 bg-blue-900 text-white text-center">
+          <div className="max-w-6xl mx-auto px-4">
+            <h2 className="text-3xl md:text-4xl font-bold">
+              Ready to Rank #1 on Google?
+            </h2>
+            <p className="mt-4 text-white/80">
+              Let&apos;s grow your business with proven SEO strategies.
+            </p>
+            <Button
+              href="/contact-us"
+              className="inline-block mt-6 bg-yellow-400 text-black px-6 py-3 rounded font-semibold hover:bg-yellow-300"
+            >
+              Get Free Consultation
+            </Button>
+          </div>
         </section>
 
         <Footer />
